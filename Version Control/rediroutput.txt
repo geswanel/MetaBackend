@@ -1,0 +1,8 @@
+total 414
+drwxr-xr-x 1 ASUS 197121      0 Feb 29 17:23 ./
+drwxr-xr-x 1 ASUS 197121      0 Feb 29 16:57 ../
+-rw-r--r-- 1 ASUS 197121   6374 Feb 29 17:22 README.md
+-rw-r--r-- 1 ASUS 197121 405266 Feb 29 00:38 git_commands.pdf
+-rw-r--r-- 1 ASUS 197121     93 Feb 29 17:23 redirinput.txt
+-rw-r--r-- 1 ASUS 197121      0 Feb 29 17:23 rediroutput.txt
+-rwxr-xr-x 1 ASUS 197121     33 Feb 29 16:32 testscript.sh*

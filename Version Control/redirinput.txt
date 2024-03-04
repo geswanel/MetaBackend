@@ -1,0 +1,1 @@
+This is input from cat > redirinput.txt command using redirection of stdin from cat to file!
