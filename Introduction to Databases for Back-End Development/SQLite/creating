@@ -1,0 +1,7 @@
+/*CREATE TABLE Products (
+    Product_ID INT PRIMARY KEY,
+    Name TEXT NOT NULL,
+    Price REAL,
+    Quantity INTEGER,
+    Description TEXT
+);*/
