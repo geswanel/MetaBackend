@@ -103,19 +103,74 @@
 
 ## 2 WEEK: Basic programming
 ### Functions and DS
-- Functions
-    - kwargs
-- Scope
+- Function - piece of code that can be used repeatedly
+    - `round` `print` `input`
+    - args and kwargs
+        - passing any number of positional (tuple) or keyword arguments (dictionary)
+- Variable scope: LEGB
+    - Local - inside the function. Not accessible in GB
+    - Enclosing - outside a nested function but inside parent function
+    - Global - outside any function
+    - Built-In - `print`, `input` and other functions and variables
 - Data structures
-    - Lists
-    - Tuples
-    - Sets
-    - Dictionaries
+    - User-Defined: Tree, Queue, Stack, HashMap, Graph, LinkedList
+    - Built-In: Lists, Tuples, Sets, Dictionaries
+        - Lists - 0 ind dynamic array that stores any datatype `l = [1, 2, 3, "world"]` (`l[ind]` to read or modify element)
+            - add element: `index(id, val)`, `append(val)`, `extend(iterable)`
+            - del element: `del ar[ind]`, `ar.pop(ind)`
+            - iterate using for loop, unpacking for print function
+        - Tuples - immutable lists `tup = (1, 2, "hello")`
+            - `count`, `index(val)`
+        - Sets - not a sequence. Stores unique values `{1, 2, 3}`
+            - `.add(val)` `.remove(val)` `.discard(val)`
+            - set theory operations: `.union = |`; `.intersection = &`; `.difference = -`; `.symmetric_difference = ^`
+        - Dictionaries - **Key:Value** pairs. Keys are unique
+            - `d[key]` - reading and modifying
+            - `del d[key]` - deleting key
+            - standard iterating by key. `items` to return key, value pair
+    - Mutable and Immutable
+- Choosing and using data structures
+- Additional resources
+    - [Python datastructures](https://docs.python.org/3/tutorial/datastructures.html)
+    - [datastructures](https://realpython.com/python-data-structures)
 
 ### Error, exceptions and files handling
+- Errors
+    - Syntax - indentation, colon; mispelling in the program
+    - Exceptions - runtime (code execution);
 - Exception handling
+    - `try` - for block of code that throws exception
+    - `except` - to catch exception
+        - `except exceptiontype as e`
+        - chain except
+        - Examples: `IndexError`, `Exception`, `ZeroDivisionError`, `FileNotFoundError`
 - File handling
+    - `open(filepath, mode)`
+        - modes: `r`(default), `w`, `r+`, `a`
+            - binary: `rb`, `wb`, `rb+`, `a`
+        - **`w` creates a file**
+    - read functions `read(num of char or full text if blank), readline(same), readlines()`
+        - iterating through file objects same as `readlines`
+    - write functions `write, writelines`
+    - `close`
+    - `with open() as f` statement closes automatically
+- Path
+    - Absolute
+    - relative
+- Exercise
+    - `split`
+    - `random.choice`
 
+### Module Summary
+- Functions and DS
+    - creating function, scopes, kwargs, args,
+    - Data structures: List, Tuple, dict, Set
+- Files and error handling
+    - try except
+    - open, close, read, write
+- Additional resources
+    - [Exception and Errors](https://docs.python.org/3/library/exceptions.html)
+    - [File handling](https://pynative.com/python/file-handling/)
 
 ## 3 WEEK: Programming paradigms
 ### Procedural
