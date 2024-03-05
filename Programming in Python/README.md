@@ -173,16 +173,63 @@
     - [File handling](https://pynative.com/python/file-handling/)
 
 ## 3 WEEK: Programming paradigms
+- programming model or paradigm - structure of code
+- DRY principle
 ### Procedural
 - Procedural programming
+    - subroutines = functional sections of code
+    - hard to maintain, extend. No relation with real world objects, Data is exposed
+    - Reusable code, easy to understand and learn
 - Algorithms and complexity
+    - sequence of steps to solve a problem. 
+    - Recursion, D&Q, DP, Greedy
+    - Complexity: O(1), O(n), O(logn), O(n^2), O(nlogn), O(2^n), O(n!)
+        - accessing element, linear search, binary search, bubble sort
+        - identify input, loops, combine complexity of nested, dominant term, simplify
+- Additional Resources
+    - [programming styles in python](https://newrelic.com/blog/nerd-life/python-programming-styles)
+    - [types of algorithms in python](https://www.thetechplatform.com/post/different-types-of-algorithms-in-data-structure)
+    - [Big-O](https://dev.to/sarah_chima/the-big-o-notation-an-introduction-34f7)
 
 ### Functional programming
-- Pure function
-- Recursion
+- Functional programming
+    - Clean, consistence, maintability
+    - **First class citizen**
+        - can be assigned, passed, returned
+    - Function takes input and produces output
+    - |             |Traditional   | Pure|
+      |-------------|--------------|-----|
+      |R/U global   |Yes           | No  |
+      |Modify local | Yes          | Yes |
+      |Change args  | Yes           | No |
+      |input dependent| No         | Yes |
+    - `map` `sorted` `slices`
+    - doesn't change data outside function
+- Pure function - doesn't change outside data
+    - Consistency, Cache (predetermined outcome), Multithreading (no effect on global)
+    - No access and modify global scope
+- Recursion - repetitive itself call
+    - Neat, Seq generation, complex task segmentation
+    - Memory, hard to follow and debug
+    - Factorial example
+    - Hanoi Towers example
 - Reversing a string
+    - slices [a:b:c]
+        - a, b ommition meaning (as far)
 - map, filter
+    - map - applies passed function to every element and return results
+    - filter - applies passed function to every element and return element with True results
+    - map and filter objects
 - comprehensions
+    - list, dict, set, generator comprehensions
+    - `[<f(val)> for <geting val> if <cond>]`
+    - `zip` creates list of tuples from lists => for dict comrehensions with 2 lists
+- `join`
+- Additional resources
+    - [map, reduce, comprehensions](https://www.knowledgehut.com/blog/programming/python-map-list-comprehension)
+    - [recursion](https://realpython.com/python-recursion/)
+    - [Functional programming](https://stackabuse.com/functional-programming-in-python/)
+
 
 ### OOP
 - Intro
