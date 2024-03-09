@@ -232,23 +232,147 @@
 
 
 ### OOP
-- Intro
-- Principles
+- Paradigm - style of writing code. Reduces complexity and defines development flow.
+    - OOP - reusability, simplicity, modularity, easier to understand, abstraction
+        - Classes - blueprint of an object. Define attributes(variables) and behavior(methods = class functions)
+        - Objects - instance of a class. Instanciation
+        - Methods - behavior of a class
+        - Main concepts
+            - Inheritance - creating a new class derived from other class (child - parent)
+                - MRO - rules that python uses to order of functions and variables implemented in classes. Also determines a scope
+            - Polymorphism - different behavior of a function for different objects with same interface (`+` `*` for numbers and strings). Many forms.
+            - Encapsulation - secure data from unwanted modification. (hiding data and functionality)
+                - public - can be accessed everywhere
+                - protected - `self._a` - can be accessed within the class and its subclasses
+                - private - `self.__b` - can be accessed within the class
+                    - name mangling `_class__identifier`
+                    - public functions to access private/protected data'
+                - Not strict access control
+            - Abstraction - hide important information or unnecessary implementation
+                - `abc` module `ABC` class (Abstract Base Class)
+        - Other concepts: Method overriding, overloading, constructors etc.
+    - Procedural, Functional, EventDP, FlowDP, Logic, Declarative 
 - Classes and instances
-- instantiate
-- instance methods
-- parent class vs child class
+    - Class - combine variables(attributes) and behaviors(methods)
+    - class object - instantiation and attribute reference
+    - instance object - attribute reference and method reference with `self`
+    - method object
+    - Instantiation process: Define a class, Declare an instance, Initialize an instance
+    - How to create a class and instantiate from it? How to access attribute and method using class or instance object?
+    - Attribute reference should be done via class or instance objects.
+- Define a class example
+    - passing `self` in the method declares that it's the method of **instance**
+    - There can be **class** and **instance** attributes
+    - changing instance attribute doesn't affect class attribute
+        - however when instance attribute is default - **class attribute modification affects instances**
+    - `docstring`
+    - `pass` keyword - means continue execution witout impacting functionality flow
+- Instantiation - Reusability - different instances -> different outcomes, same class
+    - `__new__` creats an object
+    - `__init__` constructor - takes object created by `new` and initializes it
+- Instance methods and variables
+    - State of instance objects = values of instance variables (attributes)
+    - instance methods can help to change instance object state without affecting other instances
+- Parent class vs Child class
+    - Inheritance helps to pass variables and functionality from parent/base to child/sub class (Reusability)
+    - `super()` method to access a parent class
+    - changing child instance variables doesn't affect parent.
+    - `object` - default base class
 - Inheritance, multiple inheritance
+    - Multiple inheritance separated by comma
+    - Multi-level inheritance - last class wins (attribute **mro**)
+    - Built-in functions - `issubclass(child, parent)`, `isinstance(instance, class)`
+    - `super()` - gives access to parent class and siblings
+    - `dir` function returns all properties and methods of the passed object
+- Exercises 
+    - Statements inside class executed irrespective of the instance creation.
+    - Scope of variables inside class namespace
+    - by default printing object returns address
 - Abstract classes and methods
-- MRO
+    - hide implementation, interoperability, consistency, avoiding duplication
+    - `abc` module `ABC` class and `@abstractmethod` decorator
+        - **decorator** - helper function that changes behavior of passed function
+    - Can't instantiate from it
+    - Subclasses must override every abstract method - ensure functionality of derived classes
+    - Implementing abstract classes
+        - methods implemented in derived class
+        - `super` function
+- MRO - Method Resolution Order - provides rules to identify the order in which methods and attributes are passed through in search of the hierarchy of classes for resolution
+    - Linearization order of a class
+    - Inheritance types: Simple, Multiple, Multilevel, Hierarchical, Hybrid
+    - MRO identifies methods and attributes from bottom to top, from left to right
+        - DFS
+        - C3 linearization algorithm
+            - Monotonicity
+            - Super class visited only after local classes
+    - `obj.mro()` method and `help(obj)` function
+    - MRO is Python’s way of resolving the order of precedence of classes while dealing with inheritance.
+
+### Module Summary
+- Paradigms
+    - Procedural
+        - Algorithm
+        - Complexity
+        - Big-O
+    - Functional
+        - Pure Function
+        - Recursion
+    - OOP
+        - 4 main concepts: Inheritance, Polymorphism, Encapsulation, Abstraction
+        - Class, instance, method object
+        - Instantiation, changing state
+
+- `super` function usage?
+- [Additional resources](https://www.coursera.org/learn/programming-in-python/supplement/zHCMs/additional-resources)
+
 
 ## 4 WEEK: Modules, Packages, libraries and tools
 ### Modules
-- What is a module?
-- Accessing modules
-- import
-- namespacing and scoping
-- reload
+- What is a module? - building block of code that can be imported to add functionality
+    - Consist of statement and definitions
+    - Breaking down code functionality into managable parts
+    - Advantages
+        - Reusability
+        - Scope (module namespace)
+        - Simplicity - reduce interdependency - specific purpose
+    - `import` modules imported once. Code inside is executed
+        - typically imported at the beginning. But can be imported in the function or at any other place.
+    - Built-in modules (`math`)
+    - `matplotlib`
+    - Accessing
+        - Any python file can be a module
+        - Current-directory -> Built-In -> pythonpath -> Installation dependent default dir
+        - `sys.path()`
+        - `calendar.leapdays(), calendar.isleapyear()`
+    - `import` statement
+        - current file = `main` module
+        - importing files from the current directory
+        - importing built-in modules - python std library (`math` `random` etc)
+        - importing modules from folder in the current directory (`sys.path.insert`)
+            - Why do I need to use `sys.path` if i can just use `import folder.module`?
+        - Python Package Index. PyPI (cmd:`pip install numpy`) => `import numpy`
+        - Examples
+            - `import math` import module - used as `math.sqrt`
+            - `from math import sqrt` `from math import sqrt, log10` `from math import *` - importing functions, classes and variables from module file
+                - no imported object in the scope of main file
+                - using `*` - bad practice because it's confusing where a certain function came from and it may lead to coflicts between module functions.
+            - `import math as m`, `from math import factorial as f` - aliases for module and module objects
+    - Namespacing and Scoping
+        - Namespace - Mapping from names to objects. Similar to `dict` data structure for mapping
+            - module = namespace
+        - Scope - place in a python programm where namespace are accessible
+        - Scope types LEGB - scope resolution rule
+            - Local
+            - Enclosed - `nonlocal` keyword to access variables from the parent function within the nested one
+            - Global - `global` keyword to access global variables within a function
+            - Built-in
+        - `id` function to get address
+        - variables are local by default
+            - local to module or local to function
+    - `reload` function in `importlib` module
+        - module load once but reload can help to load it more times
+        - to dynamically change code and information
+        - `os.listdir()` example with dynamic changes
 
 ### Packages, Libraries, Frameworks
 - Numpy, Pands, Matplotlib
@@ -262,3 +386,8 @@
 - test automation packages
 - Pytest
 - TDD
+
+
+### Additional information
+- `__pycache__` - bytecode files to facilitate project running. Safe to delete.
+- `super` usage
