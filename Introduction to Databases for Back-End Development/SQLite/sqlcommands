@@ -1,0 +1,58 @@
+/*CREATE TABLE Products (
+    Product_ID INT PRIMARY KEY,
+    Name TEXT NOT NULL,
+    Price REAL,
+    Quantity INTEGER,
+    Description TEXT
+);*/
+
+-- Gym member task (Numeric)
+--CREATE TABLE Gym_Members (
+--    Member_ID INTEGER PRIMARY KEY,
+--    Name TEXT NOT NULL,
+--    Age INTEGER,
+--    Weight INTEGER
+--);
+
+/*INSERT INTO Gym_Members (Name, Age, Weight) VALUES
+    ('Alice', 18, 54),
+    ('Jey', 23, 60),
+    ('Bob', 30, 78),
+    ('Connor', 35, 74),
+    ('John', 28, 95);*/
+
+
+--SELECT AVG(Weight) FROM Gym_Members;
+
+
+/*SELECT * FROM Gym_Members
+WHERE Weight = (SELECT MAX(Weight) FROM Gym_Members);*/
+
+
+--UPDATE Gym_Members SET Weight = 80 WHERE Name = 'John';
+
+-- DELETE FROM Gym_Members WHERE Name = 'Connor';
+
+--SELECT * FROM Gym_Members;
+
+
+-- Books Task (String)
+/*CREATE TABLE Books (
+    Book_ID INTEGER PRIMARY KEY,
+    Title VARCHAR(255) NOT NULL,
+    Author VARCHAR(255) NOT NULL,
+    Genre TEXT,
+    Pub_Year INTEGER
+);*/
+
+/*INSERT INTO Books (Title, Author, Genre, Pub_Year) VALUES
+    ('To Kill a Mockingbird', 'Harper Lee', 'Fiction', 1960),
+    ('1984', 'George Orwell', 'Dystopian', 1949),
+    ('Pride and Prejudice', 'Jane Austen', 'Romance', 1813),
+    ('The Great Gatsby', 'F. Scott Fitzgerald', 'Classics', 1925),
+    ('Harry Potter and the Sorcerer''s Stone', 'J.K. Rowling', 'Fantasy', 1997)*/;
+
+
+--SELECT Book_ID, SUBSTR(Title || ' ' || Author, 1, 50) AS Book_Info FROM Books;
+-- SELECT * FROM Books WHERE Title LIKE '%Harry%';
+-- SELECT * FROM Books WHERE Author LIKE 'J%'
