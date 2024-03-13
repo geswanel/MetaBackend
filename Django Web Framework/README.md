@@ -409,13 +409,115 @@ def index(request):
 
 ## 3 WEEK: Models
 ### Models and migrations
-- Models
-- Model relationship
+- Models - Data Layer (Presentation, Application, Data)
+    - Object equivalent of a db table. Definitive source about data
+        - maps to a single table
+        - Have needed fields and behavior
+    - 2 Ways
+        - Creating db and populate and use custom queries in application level
+        - Use a framework (ORM) - replaces custom queries by providing database-access api
+    - subclass of `django.db.models.Model`
+        - attributes - fields of a database
+        - id created by default
+        ```python
+        class User(models.Model):
+            name = CharField(100)
+            surname = CharField(100)
+        ```
+    - CRUD
+        - C: Create class object and `instance.save()` method
+        - R: `model.objects.get(pk=id)` method
+        - U: get object, change its attribute, save it
+        - D: `model.objects.filter(cond).delete()` method
+    - Creating model class => Migrations (create tables using models)
+- Model relationships
+    - relationship types
+        - One to One: `OneToOneField(model, on_delete=model.CASCADE)`
+        - One to Many: `ForeignKey(...)`
+        - Many to Many: `ManyToManyField(model)`
+    - FieldTypes
+        - `EmailField(max_length)`, `CharField(max_length)`, `IntegerField(max_length)`, `URLField()`
+        - `primary_key` key argument if you want custom pk
+    - on_delete option
+        - `CASCADE`, `PROTECT`, `RESTRICT`(exception protect)
 - Creating models
-- Migrations How to use migrations
-- History of changes
+    - Create model for menu item
+    - Migrations `makemigrations` `migrate`
+    - django shell to access database
+        - `model.objects.create(key=value)` method to create without saving
+        - `.all()`, `.get(pk=id)`
+    - `__str__` method to have better representation
+- Migrations
+    - PostgreSQL, MySQL, SQLite
+    - ORM - relate class to sql table
+    - Sometimes need to alter table (add new col, rename col, delete col) => migrations
+    - No sql => just altering model class
+    - Sync, Maintanence, VCS
+        - Migration scripts kept in repo
+        - Easier for development team (not creating sql, where to store files etc)
+    - VCS to database
+    - How to use?
+        - CLI commands
+            - create migration script - set of instructions to db `makemigrations`
+            - apply migrations `migrate`
+            - `sqlmigrate app migration_script` - shows sql query for migration
+            - `showmigrations` - information about migration status and what is changed
+        - Migrate default `INSTALLED_APPS` tables (`auth module`) by running `migrate`
+        - Creating app
+            - Inside an app there is a `migrations` folder with migration scripts
+            - creating model -> run `makemigrations` command -> new migration script created in migrations folder -> run `migrate` command to apply migrations.
+        - VCS
+            - modifying model by renaming model -> makemigrations -> add new field -> makemigrations again => 2 new migration scripts -> `showmigrations` -> `migrate`
+            - `python manage.py migrate app migration_id` - to roll back **!!!!**
+    - Working with migrations
+        - Creating model -> `py manage.py makemigrations` -> creating migration script in migrations folder -> `migrate` to apply them.
+        - Revert back using `py manage.py migrate appname migr_name [--plan]`
+        - `showmigrations` to see infromation about migrations
+        - `sqlmigrate` to see sql query that will be executed by migration
+- History of changes of migrations
+    - Migration folder
+        - migration scripts - 2 lists
+            - python code
+                - dependencies - previous migrations
+                - operations - actions to perform
+                    - CreateModel, DeleteModel, AddField, AlterField, AddIndex
+        - `showmigrations`
+        - django-migrations tables
+            - ID APP name datetime
+        - Migrations can be applied to a specific app
 - Foreign Keys in models
+    - MenuItem and Cuisine(MenuCategory) example
+    - ForeignKey(Model, on_delete=models.Protect, default=None)
+    - admin register models - app level admin.py -> admin.site.register(ModelClass)
+    - ensure app config (settings)
+    - makemigrations -> migrate
+    - `related_name` parameter to change name in the sql table
 - ORM
+    - ORM - Object Relation Mapping - tool that helps to interact with SQL via code
+        - maps a class to a table   (`Model`)
+            - attribute - table 
+        - Performs CRUD
+        - Migration mechanism
+    - QuerySet
+        - Create, `save()` method or using **manager of the model** `model.objects` and `create()`
+        - creating objects with foreign key object
+        - `manager.all()`
+        - `manager.filter(criteria)`
+            - criteria `name__startswith="H"`
+        - Update: retrieve object -> change attr -> `save()`
+        - Delete: retrieve object -> `object.delete()` method
+- Using ORM
+    - QuerySet - collection of objects
+    - QuerySet API
+        - get = select
+        - filter = where
+        - & operator
+        - Methods and operator returns queryset
+        - methods doens't return query set
+    - Example
+        - & method between two filters - and operator
+- [Additional Resources](https://www.coursera.org/learn/django-web-framework/supplement/kbX1B/additional-resources)
+
 
 ### Models and Forms
 - Forms
