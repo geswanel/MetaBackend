@@ -520,11 +520,127 @@ def index(request):
 
 
 ### Models and Forms
-- Forms
+- Forms - tool to collect data from user. (Login, Create, update)
+    - Types
+        - Class Form
+        - Model Form - create form from model
+    - Django forms automatically create html tags. forms.py file
+    ```python
+    from django import forms
+    class MyForm(forms.Form):   #class form
+        field = forms.CharField(label="...", max_length=100)
+    
+    class MyModelForm(forms.ModelForm):
+        class Meta:
+            model = Model
+            field = [fields]
+    ```
+    ```html
+    <form ...>
+        {{ form }}
+        <input type="submit" value="OK">
+    </form>
+    ```
 - Django form fields and datatypes
+    - Input, Radio, Drop-List, Checkboxes
+    - fields
+        - CharField, EmailField, IntegerField, MultipleChoiseField, FileField
+    - arguments
+        - `label`, `required` by default, `initial` value, `help_text` descriptive text
+        - CharField `widget=formsTextArea(attrs={'rows':5})`
+        - EmailField
+        - DateField `widget=NumberInput(attrs={'type':'date'})`
+        - ChoiceField(choices=list(tuples)) `widget=RadioSelect
+    - Validation
 - Django fields
+    - Model - class that matches with table via ORM. So methods can be invoked instead of sql queries
+        - How to create a model => subclasses?
+            - `appname_modelname` - default table name => `db_table` parameter in `Meta` nested class to change
+    - From fields
+    - Field properties
+        - `primary_key`= False by default => custom pk field. Otherwise integerfield created
+        - `unique` - boolean to ensure uniqueness
+        - `choices` - two item tuples with a drop-down
+    - Field Types
+        - CharField(max_length) - TextField
+        - IntegerField - SmallIntegerField, AutoField, BigIntegerField for different min, max
+        - FloatField - DecimalField
+        - EmailField - CharField with email validator
+        - FileField - `upload_to` parameter for designated place
+        - ImageField - FileField with image validator
+        - URLField - CharField with url validator
+        - DateTimeField - `datetime.datetime` object. DateField - `datetime.date` object
+    - Relationship fields
+        - ForeignKey(model, on_delete)
+        - OneToOneField(...)
+        - ManyToManyField(model)
+        - `on_delete` property
+            - CASCADE
+            - PROTECT - protects referenced object from deletion
+            - RESTRICT - same as protect but allows to delete if all referenceb objects will be deleted with cascade property (artist, album, song example)
 - Form API
+    - Forms required to get data from user - HTML page
+        - `text` `select` etc
+    - `forms.Form` class to create custom forms that will automatically create HTML
+        - Fields `forms.Field`
+            - `CharField` = text, `label` and `max_length` properties
+                - `widget=forms.TextArea` for longer text
+                - `EmailField`
+            - `ChoiceField` = Select. `choices` property with pairs. `max_length` property
+            - `IntegerField` - `min_value` `max_value` properties
+            - `FloatField` `DecimalField`
+            - `FileField` - `upload_to` property. type=file
+                - `ImageField` - **Pillow** library
+    - Form Template
+        - Creating a template: `csrf_token`; `form` `table` tag should be written by a coder
+            - `form.as_table` - default. `.as_p` `as_ul` `as_div`
+        - Render a template in a view passing `form` object in context.
+    - View processing request
+        - Post data check
+        - creating form with data
+        - `is_valid` and `cleaned_data` attr
+    ```python
+    # forms.py
+    from django import forms    
+
+    class ApplicationForm(forms.Form): 
+        name = forms.CharField(label='Name of Applicant', max_length=50) 
+        address = forms.CharField(label='Address', max_length=100) 
+        posts = (('Manager', 'Manager'),('Cashier', 'Cashier'),('Operator', 'Operator')) 
+        field = forms.ChoiceField(choices=posts) 
+    
+    # views.py   
+    def index(request):  
+        if request.method == 'POST': 
+            form = ApplicationForm(request.POST) 
+            # check whether it's valid: 
+            if form.is_valid(): 
+                # process the data  
+                # ... 
+                # ... 
+                return HttpResponse('Form successfully submitted') 
+        else:
+            form = ApplicationForm()
+        return render(...)
+    ```
+    ```html
+        <html>
+        <body>
+            <form action="/form" action="POST">
+                {% csrf_token %}
+                <table>
+                    {{ f }}
+                </table>
+        </body>
+        <html>
+    ```
 - Creating forms
+    - Creating a form in `forms.py`
+    - Creating a view with just rendering a form
+    - Creating a template (form tag, submit input, and {{form}})
+    - csrf_token - form data safe
+    - Making `as_p`
+    - `required`, `help_text` parameteres 
 - Model form
 
 ### Admin
