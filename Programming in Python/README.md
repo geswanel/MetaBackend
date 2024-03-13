@@ -344,38 +344,59 @@
         - Current-directory -> Built-In -> pythonpath -> Installation dependent default dir
         - `sys.path()`
         - `calendar.leapdays(), calendar.isleapyear()`
-    - `import` statement
-        - current file = `main` module
-        - importing files from the current directory
-        - importing built-in modules - python std library (`math` `random` etc)
-        - importing modules from folder in the current directory (`sys.path.insert`)
-            - Why do I need to use `sys.path` if i can just use `import folder.module`?
-        - Python Package Index. PyPI (cmd:`pip install numpy`) => `import numpy`
-        - Examples
-            - `import math` import module - used as `math.sqrt`
-            - `from math import sqrt` `from math import sqrt, log10` `from math import *` - importing functions, classes and variables from module file
-                - no imported object in the scope of main file
-                - using `*` - bad practice because it's confusing where a certain function came from and it may lead to coflicts between module functions.
-            - `import math as m`, `from math import factorial as f` - aliases for module and module objects
-    - Namespacing and Scoping
-        - Namespace - Mapping from names to objects. Similar to `dict` data structure for mapping
-            - module = namespace
-        - Scope - place in a python programm where namespace are accessible
-        - Scope types LEGB - scope resolution rule
-            - Local
-            - Enclosed - `nonlocal` keyword to access variables from the parent function within the nested one
-            - Global - `global` keyword to access global variables within a function
-            - Built-in
-        - `id` function to get address
-        - variables are local by default
-            - local to module or local to function
-    - `reload` function in `importlib` module
-        - module load once but reload can help to load it more times
-        - to dynamically change code and information
-        - `os.listdir()` example with dynamic changes
+- `import` statement
+    - current file = `main` module
+    - importing files from the current directory
+    - importing built-in modules - python std library (`math` `random` etc)
+    - importing modules from folder in the current directory (`sys.path.insert`)
+        - Why do I need to use `sys.path` if i can just use `import folder.module`?
+    - Python Package Index. PyPI (cmd:`pip install numpy`) => `import numpy`
+    - Examples
+        - `import math` import module - used as `math.sqrt`
+        - `from math import sqrt` `from math import sqrt, log10` `from math import *` - importing functions, classes and variables from module file
+            - no imported object in the scope of main file
+            - using `*` - bad practice because it's confusing where a certain function came from and it may lead to coflicts between module functions.
+        - `import math as m`, `from math import factorial as f` - aliases for module and module objects
+- Namespacing and Scoping
+    - Namespace - Mapping from names to objects. Similar to `dict` data structure for mapping
+        - module = namespace
+    - Scope - place in a python programm where namespace are accessible
+    - Scope types LEGB - scope resolution rule
+        - Local
+        - Enclosed - `nonlocal` keyword to access variables from the parent function within the nested one
+        - Global - `global` keyword to access global variables within a function
+        - Built-in
+    - `id` function to get address
+    - variables are local by default
+        - local to module or local to function
+- `reload` function in `importlib` module
+    - module load once but reload can help to load it more times
+    - to dynamically change code and information
+    - `os.listdir()` example with dynamic changes
+- Use Cases
+    - Module - file with functions, classes and data
+    - Package - directory with subpackages or modules
+    - Library - one or more packages
+    - `pip` installing `request`, using aliases and subpackages `matplotlib`
+    - Documentation on github or PyPI
+- [Additional resources](https://www.coursera.org/learn/programming-in-python/supplement/8XRBa/additional-resources)
 
 ### Packages, Libraries, Frameworks
+- **Bundled** collection of modules serving a specific purpose
 - Numpy, Pands, Matplotlib
+    - `from package import module`
+    - pip, PyPI
+    - Data Science, AI, Web frameworks, Applications, Hardware interfacing, Automation
+    - Built-in packages: `os` `sys` `json` `csv` `importlib` `re` `math` `itertools`
+    - Data Science: `numpy` `scipy` `nltk` `pandas`
+    - image `open cv` `matplotlib`
+    - AI, ML `TensorFlow` `PyTorch` `Keras` `SciPy` `Scikit-learn` `Theano`
+    - Web: `Flask` ligth weight, `Django` full stack, `cherry pie` `pyramid` `selenium`
+    - Gamedev and other domains
+    - Examples:
+        - numpy: zeros, linspace, full, ndarray type
+        - pandas: DataFrame, sort_values, assign, describe
+        - nltk: tokenize, corpus => word_tokenize, sent_tokenize - natural language processing
 - Data analysis packages
 - ML packages: Pytorch, TensorFlow
 - Web frameworks
