@@ -6,7 +6,7 @@ from . import models
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 
-from .forms import MenuItemForm
+from .forms import MenuItemForm, CategoryForm
 from .models import Dish, Category
 
 # Create your views here.
@@ -55,3 +55,13 @@ def create_menu_item(request):
         form = MenuItemForm()
     
     return render(request, "menuitemform.html", context={"form": form})
+
+def create_category(request):
+    if request.method == "POST":
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse("myapp:index"))
+    else:
+        form = CategoryForm()
+    return render(request, "categoryform.html", context={"form": form})

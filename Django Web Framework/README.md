@@ -641,7 +641,34 @@ def index(request):
     - csrf_token - form data safe
     - Making `as_p`
     - `required`, `help_text` parameteres 
+    - adding styles to form tag through attribute
 - Model form
+    - Creating a model
+    - `ModelForm` class
+        - `Meta` nested class with implementation settings (`model`, `fields`)
+            - `fields = ['field1', 'field2'...] or '__all__'`
+        - `form.save()` to save data in form to the model table
+    ```python
+    #   models.py
+    class MyModel(Model):
+        field = ...
+    
+    # forms.py
+    class MyForm(ModelForm):
+        class Meta:
+            model = MyModel
+            fields = '__all__'
+    
+    # views.py
+    def my_view(request):
+        if request.method == 'POST':
+            form = MyForm(request.POST)
+            if form.is_valid():
+                form.save()
+        else:
+            form = MyForm()
+        return render(...)
+    ```
 
 ### Admin
 - Django admin
