@@ -4,6 +4,8 @@ from django.db import models
 
 class Category(models.Model):
     category_name = models.CharField(max_length=50)
+    class Meta:
+        permissions = [("can_create_category", "Can create categor")]
 
 
 class Dish(models.Model):

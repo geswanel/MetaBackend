@@ -9,9 +9,11 @@ from django.urls import reverse
 from .forms import MenuItemForm, CategoryForm
 from .models import Dish, Category
 
+from django.contrib.auth.decorators import permission_required, user_passes_test
+
 # Create your views here.
 def index(request):
-    return HttpResponse("Hello, this is index page!")
+    return render(request, 'index.html')
 
 def dish_description(request, dish_id):
     dish = models.Dish.objects.get(pk=dish_id)
@@ -34,7 +36,7 @@ class MyView(View):
     def get(self, request):
         return HttpResponse("get from class based view")
 
-
+@permission_required('myapp.add_dish')
 def create_menu_item(request):
     if request.method == "POST":
         form = MenuItemForm(request.POST)
@@ -56,6 +58,7 @@ def create_menu_item(request):
     
     return render(request, "menuitemform.html", context={"form": form})
 
+@user_passes_test(lambda user: user.is_authenticated and user.has_perm('myapp.can_create_category'))
 def create_category(request):
     if request.method == "POST":
         form = CategoryForm(request.POST)

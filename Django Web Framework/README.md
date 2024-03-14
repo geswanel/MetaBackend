@@ -669,12 +669,91 @@ def index(request):
             form = MyForm()
         return render(...)
     ```
+- [Additional Resources](https://www.coursera.org/learn/django-web-framework/supplement/YyY6o/additional-resources)
+
 
 ### Admin
 - Django admin
-- Managing users, Adding group of users
-- Permissions
+    - manage data of application by staff
+    - Automated - interface panel that automatically loads registered models to the interface
+    - django-admin cli utility
+        - `createsuperuser`
+    - `INSTALLED_APPS` - django.contrib.admin
+- Managing users
+    - Adding users and persmissions
+        - Creating groups with predefined sets of permissions
+        - `is_staff` property
+            - can manage permissions and users 
+            - Example:
+                - unregistering model (User)
+                - `@admin.register()` decorator with **UserAdmin** subclass
+                    - customization
+                        - `readonly_fields`
+                        - `get_form` method
+                - Allow only superuser change usernames
+                    - disable field in `get_form` method. `form.base_fields['username'].disabled = True`
+        - **Add permissions judiciously**
+    - Customizing views from models
+        - Creating and registering to admin
+        - `__str__` method for better representation in admin
+        - `list_display` - displayed in table
+        - `search_fields`
+        - `@admin.register(model)` decorator register a model with decorated class customization
+- Adding group and users
+    - creating model
+    - registering model 
+    - creating superuser
+    - `__str__` of model
+    - creating user and a group => permissions
+- Permissions - which users are allowed to do which actions
+    - Authentication and Authorization
+    - superuser, staffuser, user
+        - creating user via shell `create_user` of `User` model class
+            - `is_staff` property
+        - creating superuser via django-admin utility
+    - Permissions in a model (action: dd, change, delete, view)
+        - `app.action_model` model in lowercase
+        - `has_perm` function and `PermissionDenied` exception
+    - Sets of users in django groups
+        - Group - list of permissions
+    - Ensure permissions => `@permission_required` decorator for a view function
+    - Enforcing permissions
+        - Admin interface
+            - Creating a model with `Meta` class with `permissions` attibute [(name, description)]
+        - Ensuring permissions on class-based, function-based, url, template level
+            - User info is got from `request`
+            - `PermissionDenied django.core.exceptions`
+            - `view` level
+                - function
+                    - `@permission_required(perm)`  `django.contrib.auth.decorators`
+                    - manually check `request.user` object `has_perm(perm)` and `is_authenticated` or `is_anonymous`
+                    - `@user_passes_test(func, url=login)`
+                        - func - boolean function
+                    - `@login_required`
+                - `PermissionRequiredMixin django.contrib.auth.mixins` an `permission_required` attr
+                ```python
+                def manually(request):
+                    if request.user.is_anonymous():
+                        raise PermissionDenied
+                    pass # other functionality
 
+                @permission_required("app.perm")    #@login_required(), @user_passes_test(lambda user: user.is_authenticated() and user.has_perm())
+                def decorator(request)
+                    pass
+
+                class MyView(PermissionRequiredMixin, ListView):
+                    permission_required = 'myapp.view_product'
+                    template_name = 'product.html'
+                    model = Product
+                ```
+            - template level: using `if` statement and checking `user` or `perm.permname`
+            - url patterns: instead using `view` use `decorator(view)`. `path(url, decorator(view))`
+- Practice
+    - Creating login and logout pages and views
+        - LoginView has default template name
+        - LOGIN_REDIRECT_URL and LOGOUT_REDIRECT_URL in `settings` or next_page param
+        - Why logout form and not a link?
+    - migrations when adding permissions
 
 ### Database configurations
 - Database options
