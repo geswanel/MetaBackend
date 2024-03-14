@@ -754,10 +754,71 @@ def index(request):
         - LOGIN_REDIRECT_URL and LOGOUT_REDIRECT_URL in `settings` or next_page param
         - Why logout form and not a link?
     - migrations when adding permissions
+- Users and Permissions
+    - shell creating users
+    - add change delete view permissions
+        - `ModelAdmin`
+    - user objects
+        - groups 
+        - `user_permissions` `Permission` set add remove clear
+        - custom permissions
+    - admin interface
+        - creating groups
+- [Additional resources](https://www.coursera.org/learn/django-web-framework/supplement/zB9d0/additional-resources)
 
 ### Database configurations
-- Database options
+- Database configurations
+    - SQLite - small projects, rapid prototyping
+    - scalable and robust databases: MySql, Postgresql, mariadb, oracle, sqlite
+        - separate server needed
+        - Django establishes connection
+        - address, port_number, db_name
+        - db driver - ORM
+        - Connector(driver) mysqlclient
+            - `CONN_MAX_AGE` parameter
+        - Configure parameters
+        - Manually create database. Connection and permissions. Db security
+        - security of db credentials
 - MySQL
+    - downloading mysql servr
+    - starting mysql server client or `mysql -u root -p` in cli
+        - sql queries (creating a db)
+        - `show databases;`
+    - Installing mysql db api driver `pip instal mysqlclient`
+    - Enabling
+        - `settings.DATABASES` - mysql configurations
+            - db engine, name, username, password, host ip, port 3306
+            - optional: sql_mode, default-character-set, read-default-file, init_command
+        - DB credentials. `python-dotenv` `find_dotenv` `get_key`
+    - MySQL extension
+        - connectin to db
+        - reseting root password
+    - `use db` `show tables`
+- Setting up mysql connection
+    - internal db connection support
+    - ORM
+    - mysql: opensource,reliable, secure, scalable
+    - db preinstalled, sqlite default
+    - Downloading mysql db -> `mysql -u root -p`-> creating user `CREATE USER 'admindjango'@'localhost' INDENTIFIED BY 'password';` -> grant permissions `GRANT ALL ON *.* TO 'admindjango'@'localhost;'` -> `flush privileges;` -> install db connector `mysqlclient` library or another python db connector libraries -> `settings.DATABASES` configuration -> `makemigrations` `migrate`
+
+### Module Summary
+- Models and tables
+    - fields, attributes, keys
+    - relationships
+- Migrations - concept
+    - rolling back, best practices
+- ORM
+- QuerySet API
+- Form and models
+    - class Form
+    - model form
+- Permissions, admin panel
+    - users and groups
+    - url, view, template levels
+- MySQL db
+    - db configuration
+    - sqlite, mysql
+- [Additional Resources](https://www.coursera.org/learn/django-web-framework/supplement/f8Ong/additional-resources)
 
 
 ## 4 WEEK: Templates
