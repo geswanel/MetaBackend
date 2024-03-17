@@ -822,9 +822,38 @@ def index(request):
 
 
 ## 4 WEEK: Templates
-### Templates
-- Templates
+### Templates - presentation layer
+- Templates - Dynamic content - data that changes according to context
+    - templates  - text based document using DTL
+        - static - structure and layout
+        - DTL - dynamic. render function taking context
+    - django template engine. DTL
+        - DTL
+            - tags  `{% %}`: for - endfor
+            - variables `{{}}`
+            - filters
+            - comments
+        - template engine processes
+        - configuration `settings.TEMPLATES` for template engine. `APP_DIRS`, `DIRS`
+        - multiple template engines `OPTIONS={"environment": "app.jinja2.environment"}`
+    - code reuse - template inheritance
+        - `base.html`
+            - `{% block name %} {% endblock %}` in base
+            - `{% extends 'base.html' %} {% block name %} {% endblock %}` in subtemplate
+    - **templates** folder - best practice
 - Example
+    - `HttpResponse` has text/html type and html can be passed as parameter. Using .format it's possible to pass variables to html and make content dynamic.
+    - Templates are better choice for dynamic content thanks to DTL
+    - Template usage
+        - Creating a template (HTML file in `templates` folder on project or app level)
+        - render template in a view (`render` function, or `template` object via `get_template` and `django.template.loader` )
+        - pass context as third parameter - dictionary with data
+        - Tags
+            - Variable tag  `{{ variable }}` will put passed variable
+                - Filters `{{ variable | filter }}` - modify variable
+                - `upper` `lower` `title`
+                - `slice[start:finish]` `length` `wordcount`
+            - `{% if %}{% endif %}` `{% for %} {% endfor %}`
 - Creating templates
 
 ### Workng with templates
