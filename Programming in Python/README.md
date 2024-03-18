@@ -397,16 +397,141 @@
         - numpy: zeros, linspace, full, ndarray type
         - pandas: DataFrame, sort_values, assign, describe
         - nltk: tokenize, corpus => word_tokenize, sent_tokenize - natural language processing
-- Data analysis packages
+- Data analysis packages: Numpy, SciPy, Matplotlib, Scikit-learn
+    - Scikit-learn - modeling data
+    - Pandas - datasets, clearing, analysing, manipulating data
+        - Series and DataFrames
+        - CSV and Json
+    - numpy
+        - fourier transform and matrices. ndarrays
+        - axes, rank
+    - matplotlib - visualisation (Static, interractive, animated)
+        - pyplot
 - ML packages: Pytorch, TensorFlow
+    - NLP, Deep Learning, Sentiment analysis, Recommend engine, computer vision, speech recognition
+    - Collection of packages = library
+- Big Data and analysis
+    - Volume, Variability, Velocity
+    - Data source -> data storage -> filtering&transform -> analysis & storage -> report & visualisation
+    - Why python?
+        - Ease of use, Licensing and open-source, Active community, Libraries, Hadoop and Spark, High processing speed, Portability and Scalability
+    - python tools and libraries
+        - Redshift and S3
+        - BigQuery
+        - PySpark
+        - Kafka
+        - Pydoop
 - Web frameworks
+    - No need to understand sockets, threading and protocols => time efficient
+    - Connection with db, form processing, authentication, routing requests, debuging, testing
+    - Full-Stack - overrequirements: Form generation, template layouts, http request handling, wsgi interfaces, db connection handling
+        - Django, Web2py, Pyramid
+    - Microframeworks - lighter version of full stack
+        - Flask, CherryPi, bottle, dash
+    - Asynchronous
+        - Growler, AIOhttp, Sanic
+    - Mostly used
+        - Django
+        - Flask
+
+- [Additional Resources](https://www.coursera.org/learn/programming-in-python/supplement/x83Wt/additional-resources)
 
 ### Testing tools
 - What is testing
-- types of testing
-- test automation packages
+    - Testing is a way of evaluating and verifying software for performance, correctness, and completeness.
+        - Least number of test should cover most possible failures
+        - Vital for quality assurance, ensures functionality, prevent crashes, bugs
+    - Benefits
+        - Detects poor design and inefficiency
+        - addresses scalability concerns and security vulnerabilities
+        - provides A/B testing
+        - ensures compatability
+        - coverage, reusability, cost reduction
+        - functionality, flow, defect detection
+    - Traceability
+    - Lifecycle
+        - Planning -> preparation -> execution -> reporting
+        - Writing scripts -> compiling results -> correcting defects -> generating reports
+- Types of testing
+    - White box vs Black box (Is the implementation known?)
+    - Functional(desired functionality), Non-Functional (metrics), Maintenance(after changes to code) 
+    - Unit - isolated testing of components - written with python code `PyTest` library
+    - Integration - unit tests and tests the flow data from one component to another.
+        - F.e. db -> python -> webpage
+        - Approaches: top down, bottom up, sandwitch
+    - System - entire software to ensure completeness
+        - Reliability, performance, security, load balancing
+        - shipping of software
+    - Acceptance - ready to deployment
+        - alpha, beta, regression testing
+        - few users and prewritten scenarious and find bugs
+    - Test earlier and test frequently
+    - **Agile** model
+- Test automation packages
+    - Unit, Regression, Integration can be automated
+    - Prepare test environment -> running script -> analyzing the result
+    - packages
+        - `unittest` module
+        - `Pytest` - unit, integration, parameterized, parallel, test framework
+        - `Robot` - keyword driven development. RPA, TDD
+        - `Selenium` - Web applications
+    - Often used with others tools
+    - Multiple frameworks
 - Pytest
-- TDD
+    - `assert` statement with boolean value
+    - pytest flags
+    ```
+    -v for verbose
+    -q quiet mode
+    -s allows the print statement inside the functions to be executed
+    -x is to flag the tests to stop execution after first failure
+    -m is used to mark a specific function
+    -k is a flag for searching and running tests with a specific keyword
+    --tb is to disable the traceback code of errors
+    --maxfail n specifies maximum number of test fails allowed
+    ```
+    - `python -m pytest file.py` `python -m pytest file file.py::func`
+    - `test_` suffix to the file and function to be tested
+    - fixtures - pass data from db or url to tested function `@pytest.fixture`
+    - markers - mark functions to be executed by create special names. xfail, xpass, skip
+        - @pytest.mark.markername
+        - `pytest -m markername -v`
+- TDD - test written first -> code written to pass tests
+    - Steps. Red green rewrite cycle
+        - Write a test for a feature that fails
+        - Write code in accordance with a test
+        - run the tests expecting them to fail
+        - evaluate an error and refactor the code
+        - rerun
+    - Requirements and standards before development
+        - behaviour driven
+        - scaling
+        - acceptance
+        - developer test driven
+    - Example: write test case -> write code -> refactor
+
+### Module summary
+- Modules
+    - `import` statement
+    - types of modules
+    - built-in and user-defined modules
+    - Create packages from pip
+    - write modules
+    - module use cases
+- Packages and libraries frameworks
+    - Data science and data analysis
+    - ML
+    - Big data and analysis
+    - Web
+- Testing
+    - TDD
+    - Types of testing
+    - 4 main level
+    - pytest, selenium
+- [additional resources](https://www.coursera.org/learn/programming-in-python/supplement/Ew9TM/additional-resources)
+
+
+## 5 WEEK: Recap and assignment
 
 
 ### Additional information
