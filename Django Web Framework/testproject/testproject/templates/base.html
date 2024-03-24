@@ -1,0 +1,26 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'myapp/base.css' %}">
+  <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+  <header>
+    {% if user.is_authenticated %}
+      <form action="{% url 'users:logout' %}" method="POST">
+        {% csrf_token %}
+        <input class="auth-btn" type="submit" value="Log Out">
+      </form>
+    {% else %}
+      <a class='auth-btn' href="{% url 'users:login' %}">Log In</a>
+    {% endif %}
+  </header>
+  {% block content %}
+  {% endblock %}
+  <footer></footer>
+</body>
+</html>

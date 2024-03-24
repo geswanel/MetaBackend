@@ -855,16 +855,169 @@ def index(request):
                 - `slice[start:finish]` `length` `wordcount`
             - `{% if %}{% endif %}` `{% for %} {% endfor %}`
 - Creating templates
+    - Web page design
+    - DTL, static content, dynamic content
+    - `render` function -> return httpresponse object
+    - Steps
+        - Creating a view with `render(request, path, context)` function
+        - Checking URLConf, `TEMPLATES.DIRS`, `INSTALLED_APPS`
+        - Creating `templates` folder on project or app level
+        - Creating a template using html, DTL `{{}}``{% %}`
+- `APP_DIRS` setting?
 
 ### Workng with templates
 - Working with templates
+    - Dynamic data DTL - separate presentation and application logic
+    - Jinja2 template engine ~~ DTL -> DRY
+    - Security
+    - 4 main parts
+        - Variables `{{variable}}`
+            - dot notation `object.attribute` `dict.key` `list.index` f.e. `list.0`
+        - Tags `{% %}`
+            - `{% if cond %} {% elif %} {% else %} {% endif %}`
+            - `{% for iteration %} {% endfor %}`
+                - variables inside for
+                    - `forloop.counter` `forloop.revcounter`
+                    - `forloop.first` `forloop.last`
+                    - `forloop.parentloop` - for nested loops
+            - `{% extends 'templatepath' %}` - inherit from another template
+            - `{% include file_or_variable %}` - includes
+            - `{% block name %} {% endblock %}` - used in inheritance to pass children blocks to parent template
+            - `{% comment "descrp" %} {% endcomment %}`
+            - `{% with var=value %} {% endwith %}` - init variable in the template level
+            - `{% csrf_token %}`
+        - Filters - change variable representation `{{ var | filter:params }}`
+            - `upper` `lower` `title`
+            - `date:format`
+            - `length` `wordcount`
+            - `first` `last` in a sequence
+            - `default:value` - in case if variable wasn't passed to template
+            - `join:delimeter` the same as `list.join(delimeter)`
 - Language and Variable interpolation
-- Dynamic templates in Django
+    - (Web Template, Data)  -> Template engine -> web pages
+        - Template engine takes passed data and substitutes block of DTL with data
+- Dynamic templates in Django - creating a simple func based view with using `render` and DTL
 - Mapping model object to a template
+    - Retrieving data from `Model object` and passing data to `render` function
 - Template inheritance
+    - DRY
+    - Maintanence issues
+    - header and footer
+        - base template
+        - Layout - blocks or sections
+            - header - company name, logo, navigation menu, user profile or icon
+                - should be consistent
+            - footer - contact details, nav links, copyright info
+    - inheritance -> breaking down components DRY
+        - `include tag` each include renders independently. rendering in a current context
+        - `extends tag` replace blocks of content
+            - `block` tag
+- More about inheritance
+    - Consistency
+    - `block` tag
+        1. Identify components that are required across all the pages. find dynamic
+        2. Create `base.html` with header, nav, dummy block, footer
+        3. Create views and templates and urlConf
+        4. Create child template using `extend`, `block name` `block.super` to get content
+            from parent block
+- **Static files** - images, js, css
+    - `django.contrib.staticfiles` app
+    - `static_url = "static/"` all static files in `myapp/static/myapp` folder
+    - `{% static 'path' %}` to load static files    `<img src={% static 'myapp/example.jpg' %}>`
 - Working with template inheritance
+    - creating `home` `about` `menu` views
+    - URLConf, installing app
+    - `DIRS` template folder
+    - creating pages for views and `base.html` and using `blocks` and `extends`
+        - creating `partials` folder to have code for header footer and `include` it in base
+    - extend background for body
+
+- Check include and extends with different context
 
 ### Debugging and Testing
-- Debugging django applications
-- Testing in Django
-- 
+- Debugging django applications - debugging - removing bugs
+    - interlinked files, dependencies, troubleshooting
+    - Mistakes
+        - missing view
+        - incorrecting template
+        - missing statements
+        - inaccessible resources
+    - Observation, practice, tools
+    - Django debugger
+        - `DEBUG` setting
+        - error logger and request, response logger
+        - Debugger in the web browser => traceroute, data
+- Testing in Django - testing - metrics for quality, reliability and performance
+    - Unit testing
+    1. input x -> func -> output y => side effects
+    2. `django.test.TestCase` => creating subclass with test
+    3. `python manage.py test [package][.tests.testcase][.function]`
+    - Small projects `tests.py`
+    - big projects `test_models.py` `test_views.py`
+    - Creating a unit test
+        - adding model Reservation to `models.py`
+        - creating `TestCase` subclass
+            - `setuptestdata(cls)` => populate local db
+            - `test_fields` `test_timestamps`
+            - `assertIsInstance`
+        - migrations
+        - class method decorator for non test functions 
+    - Many testing options are exist
+- Sub-classing generic views
+    - `django.views.View`
+        - `as_view`
+    - `get` `post` methods of class
+    - Generics
+        - TemplateView
+        - DetailView
+        - ListView
+        - UpdateView
+        - CreateView
+        - DeleteView
+        - LoginView
+        - LogoutView
+    - differences with function view
+        - simply use attributes
+            - `template_name` instead of rendering
+        - Function based view
+            - Simple, Easy, Explicit code flow, Straight forward usage of decorators, good for one-off or specialized functionality
+            - Hard to extend and reuse, Handling http methods via conditional branching
+        - Class-based
+            - Reusability, DRY, extended to include more functionality, methods for each HTTP method, Built-in generics
+            - Hard to read, implicit code flow, use a view decorator require extra import or method override
+        - Requirements of a generic view
+            - if model is used => value of model property
+            - `modelname_typeofview.html` default `template_name`
+            - mapped via `as_view()`
+        - Example of CRUD
+            - employee model, `Meta` subclass to set db_table
+            - CreateView - model, fields, success_url. => in the template **a form created**
+                - `model_create`
+            - ListView - model, success_url => in the template `object_list[ob(fields)]`
+                - `model_list`
+            - DetailView - *pk path argument* in URLConf. => in the template `object`
+                - `model_detail`
+            - UpdateView - model, fields, success_url => in the template a form created
+                - neede *pk path argument*
+                - `update_form` suffix for template
+            - DeleteView - modell, success_url => 
+                - path `'<delete/int:pk>'`
+                - `model_confirm_delete` - form with confirmation
+
+### Module Summary
+- Template
+    - DTL, webpages, Django Template Engine
+    - Creating template and passing context
+    - inheritance, including
+        - page layout - header main footer
+    - Variable, tags, filter
+    - class based views, generic views
+- Debugging and Testing
+    - `tests.py test_models.py,test_views.py`
+    - `DEBUG` flag, debugger page
+    - Testing - metrics, Debugging - removing bugs
+    - Unit tests `django.tests` `TestCase`. `python manage.py tests`
+    - Mistakes: Missing a view, incorrect template, import statements, accessible resources
+
+- [Additional Resources](https://www.coursera.org/learn/django-web-framework/supplement/YtwPH/additional-resources)
+
