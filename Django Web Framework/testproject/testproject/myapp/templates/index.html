@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %} Homepage {% endblock %}
+{% block content %}
+<h1>Hello this is an index page</h1>
+  {% if user.is_authenticated %}
+    <a href="{% url 'myapp:create_menu_item' %}">Add menu item</a>
+    <a href="{% url 'myapp:create_category' %}">Add Cuisine</a>
+  {% endif %}
+{% endblock %}

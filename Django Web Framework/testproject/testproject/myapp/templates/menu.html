@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu</title>
+</head>
+<body>
+  <style>
+    th {
+      font-weight: bold;
+    }
+
+    table {
+      margin: auto;
+    }
+  </style>
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Price</th>
+    </tr>
+    {% for item in items %}
+    <tr>
+      <td>
+        {{ item.title }}
+      </td>
+      <td>
+        {{ item.description }}
+      </td>
+      <td>
+        {{ item.price }}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</body>
+</html>
