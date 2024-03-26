@@ -245,16 +245,76 @@
         - tag based
         - has comments
     - Data conversion. DRF JSON renderer or third party for XML and YAML
-- Debugging your API
+- Debugging your API VS code
+    - Watch and Breakpoints
+    - Django debugger
 - Browsers tools and extensions for API development
-
+    - fetch("address") in console to initiate get call
+    - Headers and data in network window
+    - initiator - where was initiated
+    - Disable cache checkbox
+    - Clearing
+    - **JSON formatter** extension for a browser (there is one in firefox)
+- Mock APIs
+    - API with fake data => so client side developers can start create their api without waiting while API finished
+    - hardcoded responses
+    - mock api endpoints, real endpoints
+    - Steps: create mock data -> creating mock API endpoints
+    - Tools
+        - **Mock API data generator** browser tool `www.mockaroo.com`
+        - **Mock API endpoints** `https://mockapi.io/`
 
 ## 2 WEEK: Django REST framework\
 ### Intro to DRF
-- DRF
-- Installing
-- Better API view with decorators
-- Different types of Routing
+- DRF - toolkit on top of a django => help to build robust api quickly
+    - Bridges regular django app with ORM and django
+    - JSON, XML
+    - **Serialization** - biggest benefit of DRF
+        - easy to transform models to RESTful API
+        - utility classes
+        - models -> python data types -> json/xml/others
+        - deserialization. request -> model + validation
+    - Integration easy
+    - Web browsable API - like Insomnia but worse
+    - Own request response objects for more flexibility
+    - Status module - human readable `Status.HTTP_200_OK`
+    - CRUD helpers (get, post, patch, put, delete)
+    - Authentication systems supported
+    - External provider like facebook
+- Installing and configuring DRF
+    - pip - creating venv and managing everything by yourself
+    - pipenv - easier
+        - `pipenv install django`
+        - `pipenv shell` activate env
+            - starting project
+            - starting app
+            - `pip3 install djangorestframework` `pipenv install djangorestframework`
+            - `INSTALLED_APPS.append('rest_framework')`
+        - Writing a code. Response, Decorators, URLConf. Insomnia. Instructing about methods in api_view decorator `@api_view(['POST'])`
+            ```python
+            from rest_framework.response import Response
+            from rest_framework import status
+            from rest_framework.decorators import api_view
+
+            @api_view()
+            def books(request):
+                return Response('List of books', status=status.HTTP_200_OK)
+            ```
+- Better API view with decorators ***api_view***
+    - `@api_view()` decorator create interface for testing apis
+    - passing method names. Post calls in interface in browser
+    - Options - helpful information about the endpoint
+    - Throttling and rate limiting
+    - authentication
+- Different types of Routing and url mapping in project. **Response everywhere**
+    - Regular - `urls.py` `path` + `@api_view` decorator
+    - class method - `@staticmethod` `@api_view` `path(endpoint, views.class.func)`
+        - subclass of `object`!!!! (not from View)
+    - class based view - subclass of `APIView` `as_view()` for urls + verbs for methods (get, post etc)
+    - viewsets - `ViewSet` `list, create, update, partial_update, destroy, retrieve`
+        - `as_view({method: func})` to map method to fun
+    - `SimpleRouter(trailing_slash=False)` class - to work with viewsets `router.urls`, `router.register(endpoint, viewsetsubclass, basename)`
+    - `DefaultRouter(trailing_slash=False)` class - same as simple router but gives list of endpoints in the root
 - Generic views and ViewSets in DRF
 - Function and class-based views
 - Django debug toolbar

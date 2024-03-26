@@ -1,52 +1,45 @@
 from django.shortcuts import render
-from django.views import View
-
-from django.http import HttpResponse, JsonResponse
-from django.forms.models import model_to_dict
-from .models import Book
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from rest_framework import status
 from rest_framework.views import APIView
+from rest_framework.viewsets import ViewSet
 
 
 # Create your views here.
-class BookList(APIView):
+@api_view(['GET', 'POST'])
+def books(request):
+    return Response("List of books", status=status.HTTP_200_OK)
+
+
+class ClassA:
+    @staticmethod
+    @api_view()
+    def classMethodView(request):
+        return Response("This is a class method view", status=status.HTTP_200_OK)
+
+
+class ClassBasedView(APIView):
     def get(self, request):
-        items = Book.objects.all()
-        items_dicts = []
-        for item in items:
-            items_dicts.append(model_to_dict(item))
-        return JsonResponse(items_dicts, safe=False)
+        return Response("This is class based view", status=status.HTTP_200_OK)
+
+
+class CRUDset(ViewSet):
+    def list(self, request):
+        return Response("Viewset list", status=status.HTTP_200_OK)
+
+    def create(self, request):
+        return Response("Viewest Create", status=status.HTTP_200_OK)
     
-    def post(self, request):
-        try:
-            title = request.POST["title"]
-            author = request.POST["author"]
-            price = float(request.POST["price"])
-            inventory = int(request.POST["inventory"])
-            return HttpResponse("Putted {} {} {} {}".format(title, author, price, inventory), status=200)
-        except:
-            return HttpResponse("Bad Request", status=400)
+    def update(self, request, pk=None):
+        return Response("Viewest Create {pk}", status=status.HTTP_200_OK)
+    
+    def partial_update(self, request, pk=None):
+        return Response(f"ViewSet partial update {pk}", status=status.HTTP_200_OK)
 
-class BookItem(APIView):
-    def get(self, request, pk):
-        book = Book.objects.get(pk=pk)
-        return JsonResponse(model_to_dict(book))
-
-    def put(self, request, pk):
-        try:
-            title = request.POST["title"]
-            author = request.POST["author"]
-            price = float(request.POST["price"])
-            inventory = int(request.POST["inventory"])
-            return HttpResponse("Putted {} {} {} {}".format(title, author, price, inventory), status=200)
-        except:
-            return HttpResponse("Bad Request", status=400)
-
-    def patch(self, request, pk):
-        try:
-            title = request.POST.get("title")
-            author = request.POST.get("author")
-            price = float(request.POST.get("price"))
-            inventory = int(request.POST.get("inventory"))
-            return HttpResponse("Putted {} {} {} {}".format(title, author, price, inventory), status=200)
-        except:
-            return HttpResponse("Bad Request", status=400)
+    def destroy(self, request, pk=None):
+        return Response(f"Viewest destroy {pk}", status=status.HTTP_200_OK)
+    
+    def retrieve(self, request, pk=None):
+        return Response(f"Viewest retrieve {pk}", status=status.HTTP_200_OK)
+    
