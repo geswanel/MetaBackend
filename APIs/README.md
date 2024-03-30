@@ -316,16 +316,165 @@
     - `SimpleRouter(trailing_slash=False)` class - to work with viewsets `router.urls`, `router.register(endpoint, viewsetsubclass, basename)`
     - `DefaultRouter(trailing_slash=False)` class - same as simple router but gives list of endpoints in the root
 - Generic views and ViewSets in DRF
+    - Viewsets
+        - `ViewSet` extends `APIView`
+            - `list`, `create` methods
+            - `retrieve` `update` `partial_update` `destroy` methods
+            - From ViewSet you have to manually implement all functions
+        - ModelViewSet - give `queryset` and `serializer` => handles CRUD automatically
+        - ReadOnlyModelViewItem - Handles only get requests
+    - Generic Views - require `queryset` and `serializer` to work properly
+        - Classes
+            - `ListAPIView`, `CreateAPIView`
+                - `ListCreateAPIView`
+            - `RetrieveAPIView` `UpdateApiView` `DestroyApiView`
+                - `RetrieveUpdateAPIView`, `RetrieveDestroyAPIView`, `RetrieveUpdateDestroyAPIView`
+        - Permissions and authentication
+            - `permission_classes` public attribute in the class `permission_classes = [isAuthenticated]`
+            - Selectively enable authentication for particular calls => override `get_permission` method
+```python
+def get_permissions(self):
+    permission_classes = []
+    if self.request.method != 'GET':
+        permission_classes = [IsAuthenticated]
+        
+    return [permission() for permission in permission_classes]
+```
+            - example to retrieve orders for a authenticated user
+```python
+class OrderView(generics.ListCreateAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    permission_classes = [IsAuthenticated]
+    def get_queryset(self):
+        return Order.objects.all().filter(user=self.request.user)
+```
+        - It's possible to override default behaviour of http methods of generic class
 - Function and class-based views
+    - Function based views: easier to implement, use decorators, quickly write ones-off solution, better readability
+    - Class based views: less code duplication, less code overall, inheritance, class method for every http method
+        - passing GET parameters as query string `request.GET.get('')`
+        - passing and getting form parameters or json `request.data.get('')
+        - Creating class based view with get post methods
 - Django debug toolbar
+    - Installing
+        - `pipenv install django-debug-toolbar`
+        - `settings.INSTALLED_APPS += ["debug_toolbar"]` `settings.INTERNAL_IPS = ['127.0.0.1']`
+        - `settings.MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]`
+        - `urls.urlpatterns += [path('__debug__'), include("debug_toolbar.urls")]`
+    - Tools
+        - SQL - optimization
+        - Profiling - delays between requests and responses
+        - Headers
+        - Caching
 - Restaurant menu API project with DRF
+    - Steps for CRUD project
+        - create model and serializer
+            - `app.serializers.py` `rest_framework.serializers.ModelSerializer` -> `Meta` -> `model, fields`
+        - create views using generic views `ListCreateAPIView` `RetrieveUpdateDestroyAPIView`
+            - `queryset = model.objects.all` `serializer_class = Class`
+        - ULRConf this views
+        - Naming conventions (no trailing slash)
+- [Additional Resources](https://www.coursera.org/learn/apis/supplement/SOhsP/additional-resources)
 
 ### DRF essentials
-- Serializers
+- method view
+- Serializers = Conversion tool
+    - Benefits
+        - Check integrity and prevents data corruption
+        - helps to convert to readable format
+        - helps parsing json to model and model to json
+        - validate information
+    - Practical 
+        - `serializers.py` app level file with serializers
+        - queryset automatically converted by using `queryset.values()`
+        - `serializers.Serializer` class used to create custom serializers
+            - serializers fields => what fields will be presented => filtering fields to send
+            - `many` argument
+        - get object or 404
+        - `serializer = Serializer(items, many=True/False)` => `Response(serializer.data)`
+    - Problem with urls that I encountered! ('books' 'menu')
 - Model serializers
-- Relationship serializers
+    - subclass of `serializers.ModelSerializer`
+        - nested `Meta` class with `fields`, `model`
+            - fields name can be change (source argument of new field)
+    - `SerializerMethodField` to calculate and retrieve a new field `method_name`
+    - Decimal to work with number fields
+    - Same usage
+- Relationship serializers - A way to serialize foreign key of a table
+    - example Category for menu-items `on_delete PROTECT`
+    - Ways
+        - Just pass to `fields` => ids for foreign keys
+        - `RelatedField` type, `StringRelatedField`
+            - `__str__` for representation
+            - In view => select_related('').all() - load related model in a single sql call
+    - Creating category serializer => using category serializer instead of `RelatedField` related field serialized to json
+- Other types of serializers
+    - Nested Fields
+        - 2 ways to serialize nested
+            - create category serializer and include to menu-item serializer
+            - specifiing `depth=1` for MenuItem serializer => all fields of foreign keys
+    - Hyperlinks
+        - `HyperlinkedRelatedField` - queryset + view_name (if not match convensions)
+            - Create a view for a related field and map it with conventions.
+            - add `HyperlinkedRelatedField` to menuitem serializer and pass parameters
+            - pass request to context when createing MenuItem serializer
+                - `serialized_item = MenuItemSerializer(items, many=True, context={'request': request})` or differently to class views
+        - `HyperlinkedModelSerializer` 
+            - Model with related field shoudl extend from `HyperlinkedModelSerializer` => url patterns should match conventions
 - Deserialization and validation
-- Renderers
+    - `Serializer(data=request.data)` => `serializer.is_valid(raise_exception=True)`
+    - `serializer.save()` `serializer.validated_data`
+    - return `Response(serializer.data, http201)`
+    - requirements of related fields
+        - `read_only=True` for realted field
+    - category_id for posting id
+        - `write_only=True`
+    - it's possible to create multiple serializer for different call methods
+- Renderers - display the api output in different formats
+    - Renderers
+        - Built-in
+            - JSONRenderer
+            - BrowsableAPIRenderer => Browsable API view (DRF browser view)
+        - Third-party
+            - XMLRenderer
+            - JSONP Renderer
+            - YAML Renderer
+    - Using renderers
+        - Header: Accept: `(application/json text/html application/xml)`
+            - DRF response according to Accept header in request
+        - `settings.REST_FRAMEWORK` setting variable to establish renderers
+            ```python
+            DEFAULT_RENDERER_CLASSES = [
+                "rest_framework.renderers.JSONRenderer",
+                "rest_framework.renderers.BrowsableAPIRenderer",
+                "third party"
+            ]
+            ```
+        - Installing `pipenv install djangorestframework-xml` to render xml
+            adding to `REST_FRAMEWORK.DEFAULT_RENDERER_CLASSES` `rest_framework_xml.renderers.XMLRenderer`
+        - `format query string parameter`
+- Different types of renderers
+    - TemplateHTMLRenderer => with using DTL
+        - import `rest_framework.renderers.TemplateHTMLRenderer` `rest_framework.decorators.renderer_classes`
+        - Create a view with decorators and return `Response(context, template_name='name')`
+            - url mapping
+        - Create template for it `myapp/templates/template.html`
+    - `StaticHTMLRenderer` => without using DTL
+        - Same import and creating view with decorators
+    - CSV renderer `pipenv install djangorestframework-csv` => `text/csv`
+        - `rest_framework_csv.renderers.CSVRenderer` same import and view with decorators
+    - YAML renderer `pipenv install djangorestframework-yaml` => `application/yaml`
+        - `rest_framework_yaml.renderers.YAMLRenderer` same import and view with decorators
+    - Instead of importing CSV and YAML classes to view `renderer_classes`
+        - Add them to `REST_FRAMEWORK.DEFAULT_RENDERER_CLASSES`
+- TIPS - naming of ulrmapping using dash `category-detail` - convention - a lot of automatic work
+- Questions
+    - How to make read_only for post requests for different types of fields
+
+### Module Summary
+
+- [Additional Resources](https://www.coursera.org/learn/apis/supplement/tsdUA/additional-resources)
 
 
 ## 3 WEEK: Advanced API development
