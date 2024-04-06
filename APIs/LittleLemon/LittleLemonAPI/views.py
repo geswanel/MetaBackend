@@ -4,7 +4,16 @@ from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.response import Response
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework import status
+from django.core.paginator import Paginator, EmptyPage
+from django.contrib.auth.models import User, Group
 
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.decorators import permission_classes, throttle_classes
+
+from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
+
+
+from .throttles import TenCallsPerMinute
 from . import models, serializers
 
 
@@ -31,6 +40,32 @@ class SingleMenuItemView(generics.RetrieveUpdateDestroyAPIView):
 def menu_items(request):
     if request.method == 'GET':
         items = models.MenuItem.objects.select_related('category').all()
+        category = request.query_params.get('category')
+        to_price = request.query_params.get('to_price')
+        search = request.query_params.get('search')
+        ordering = request.query_params.get('ordering')
+        perpage = request.query_params.get('perpage', default=2)
+        page = request.query_params.get('page', default=1)
+
+        if category:
+            items = items.filter(category__category_name=category)
+        
+        if to_price:
+            items = items.filter(price__lte=to_price)
+        
+        if search:
+            items = items.filter(title__icontains=search)
+        
+        if ordering:
+            ordering_fields = ordering.split(',')
+            items = items.order_by(*ordering_fields)
+        
+        paginator = Paginator(items, perpage)
+        try:
+            items = paginator.page(page)
+        except EmptyPage:
+            items = []
+
         items_serializer = serializers.MenuItemFuncSerializer(items, many=True)
         return Response(items_serializer.data)
     if request.method == 'POST':
@@ -63,3 +98,43 @@ def category_detail(request, pk):
     "inventory": 10
 }
 """
+
+@api_view()
+@permission_classes([IsAuthenticated])
+def secret(request):
+    return Response("This is secret message.")
+
+@api_view()
+@throttle_classes([AnonRateThrottle])
+def throttle_check(request):
+    return Response('Throttle check anon')
+
+@api_view()
+@permission_classes([IsAuthenticated])
+@throttle_classes([UserRateThrottle])
+def throttle_check_auth(request):
+    return Response('Throttle check user')
+
+@api_view()
+@permission_classes([IsAuthenticated])
+@throttle_classes([TenCallsPerMinute])
+def throttle_check_custom(request):
+    return Response('Throttle check custom')
+
+
+@api_view()
+@permission_classes([IsAdminUser])
+def managers(request):
+    username = request.data['username']
+    if username:
+        managers = Group.objects.get(name='Manager')
+        user = get_object_or_404(User, username=username)
+        if request.method == "POST":
+            managers.user_set.add(user)
+        elif request.method == "DELETE":
+            managers.user_set.remove(user)
+
+        return Response({"message": "ok"})
+
+
+    return Response({"message": "error"}, status.HTTP_400_BAD_REQUEST)

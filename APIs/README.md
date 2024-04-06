@@ -480,19 +480,230 @@ class OrderView(generics.ListCreateAPIView):
 ## 3 WEEK: Advanced API development
 ### Filtering ordering searching
 - Filtering and Searching
+    - 2 ways to handle it
+        - Client side: Client gets all instances and filter it => long processing
+        - Server side: Client passes parameters and server filters instances on it's side
+    - Query string parameters `?par1=val1&par2=val2`
+        - `request.query_params.get('')`
+        - `if queryparam` => filtering or searching
+    - Filtering and searching - **LOOKUPS**
+        - `queryset.filter()` function
+            - field lookups => `field__lookup`
+                - `filter(price__lte=to_price)` - for usual fields
+                - `filter(category__title=category)` - model__field for related fields
+            - `search` param
+                - `filter(title__contains)` `startswith` `icontains`
 - Ordering
-- Validation
-- Data sanitization
-- Pagination
-- Caching
+    - `django filter` package to use with class based views
+    - Function based => django native `?ordering=price,inventory`
+        - `queryset.order_by(field1, field2)` `-field => DESC`
+        - splitting comma and unpacking `order_by(*ordering)`
+- Data Validation - check if data is correct
+    - Data requirements
+    - methods
+        - In the field `serializers.DecimalField(min_value=2)`
+        - Using `extra_kwargs` in `Meta` class
+        ```python
+        class Meta:
+            ...
+            extra_kwargs = {
+                "price": {'min_value': 2},
+                "stock": {'source': inventory, 'min_value': 0}  # will add field without creating outside the Meta!
+            }
+        ```
+        - `valid_field` methods => `ValidationError`
+        ```python
+        def validate_price(self, value):
+            if value < 2:
+                raise serializers.ValidationError("some text")
+        ```
+        - `validate` methods => all fields in one function
+        ```python
+        def validate(self, attr):
+            if attrs['price'] < 2:
+                raise serializers.ValidationError('sometext')
+            
+            return super.validate(attrs)
+
+        ```
+    - Unique validation `rest_framework.validators`
+        - UniqueValidator
+            - In the field `title = serializers.CharField(..., validators=[UniqueValidator(queryset=MenuItem.objects.all())])
+            - In `extra_kwargs` in Meta
+            ```python
+            extra_kwargs = [
+                'title': {
+                    'validators': [UniqueValidator(queryset=MenuItem.objects.all())]
+                }
+            ]
+            ```
+        - `UniqueTogetherValidator`
+            - in Meta
+            ```python
+            validators = [UniqueTogetherValidator(queryset, fields=['title', 'price'])]
+            ```
+- Data sanitization - clearing data from threats
+    - HTML injection (JS malicious code injected and can be executed)
+        - bleach third-party package `pipenv install bleach` in serializers
+        ```python
+        import bleach
+
+        ...
+            def validate_field(self, value):
+                return bleach.clean(value)
+            
+            def validate(self, attr):
+                attrs['title'] = bleach.clean(attrs['title'])
+        ```
+    - SQL injection => avoid using raw sql queries if it's possible
+        - Do not use string formatting or quotations
+    ``` python
+    MenuItem.objects.raw("SELECT .... %s", [limit]);    #OK
+    MenuItem.objects.raw('SELECT * FROM LittleLemonAPI_menuitem LIMIT %s' % limit) # not ok
+    MenuItem.objects.raw("SELECT * FROM LittleLemonAPI_menuitem LIMIT '%s' ", [limit]) # not ok
+    ```
+- Pagination - sending results in smaller chunks
+    - `perpage` and `page` get query string parameters
+    - limit for perpage (10) => several calls (20) or bad request (50)
+    - `django.core.paginator` moduel `Paginator` class and `EmptyPage` exception
+    ```python
+    def menu_items(self, request):
+        ...
+        perpage = request.query_params.get('perpage')
+        page = request.query_params.get('page')
+
+        paginator = Paginator(items, perpage=perpage)
+
+        try:
+            items = paginator.page(page)
+        except EmptyPage:
+            items = []
+        #serializers
+        #Response
+    ```
+- Deeper about pagination and filtering
+    - Scaffolding a project with class based view based on `ModelViewSet`
+    - creating url patterns for `list` and `retrieve` methods for get calls
+        - `Class.as_view({'httpmethod': classmethod})
+    - `REST_FRAMEWORK` setting
+        - `DEFAULT_FILTER_BACKENDS`
+            - `django_filters.rest_framework.DjangoFilterBackend`
+            - `rest_framework.filters.OrderingFilter`
+            - `rest_framework.filters.SearchFilter`
+        - `DEFAULT_PAGINATION_CLASS: rest_framework.pagination.PageNumberPaginator`
+        - `PAGE_SIZE`
+    - Viewset class
+        - `ordering_fields=[]`
+        - `search_fields=[]` `related__field` for related fields
+- Caching - Saving results
+    - Can happen in multiple layers
+        - Client
+            - Caching headers => cache for a specific time
+        - Reverse proxy - distribution of requsts
+            - Caching headers => cached result for a specific time
+        - Webserver
+            - check if nothing changes
+            - simple files, a database, catching tools (redis)
+                - database cache to avoid connections
+        - DB server
+            - query cache: sql query, query results
+            - Connections still happening => disadvantage
+
+- [Additionl Resources](https://www.coursera.org/learn/apis/supplement/rw4od/additional-resources)
 
 ### Securing an API in DRF
 - Token-based authentication in DRF
-- User roles
-- Setting up API throttling
+    - Password based for first call
+    - Token based for next - long, hard to read, expires, 
+        - validation and matching
+        - `TokenAuthentication` class
+        - Steps
+            - settings `rest_framework.authtoken` to installed apps
+            - migrate
+            - create superuser and create token in admin panel
+            - create function view
+                - `rest_framework.permissions IsAuthenticated`
+                - `rest_framework.decorators permission_classes`
+            - `DEFAULT_AUTHENTICATION_CLASSES += ['rest_framework.authentication.TokenAuthentication']`
+            - Insomnia: Bearer token: Token prefix + token generated in admin panel
+        - Generating token by password authentication
+            - `rest_framework.authtoken.views.obtain_auth_token`
+                - Takes post request for authentication and generate token that can be used in next calls.
+- User roles => authorization = priviliges checking
+    - Creating roles (groups) and users, assigning roles to a user
+    - if else blocks inside the view
+        - `request.user.groups.filter(name='groupname').exists()` condition
+- Setting up API throttling (rate limiting)
+    - Base classes
+        - Anonymous throttling - `rest_framework.throttling.AnonRateThrottle`
+        - User throttling (don't forget permissions) - `...UserRateThrottle`
+    - throttles.py for custom throttles
+    - `DEFAULT_THROTTLE_RATES` setting for `REST_FRAMEWORK`
+        - `anon='2/minute'` `user='5/minute'` `'custom'='10/minute`
+    - Function based views
+        - `rest_framework.decorators.throttle_classes`
+            - Anon, User
+            - Custom - Subclass of Anon or User with `scope` member variable for throttling name for using in settings
+    - Class based views - project scaffolding
+        - Creating ModelViewSet for menu items and mapping urls for it
+        - adding `DEFAULT_THROTTLE_CLASSES` to `REST_FRAMEWORK` in the settings
+        - Getting throttle classes in class
+            - using `throttle_classes` member variable
+            - using `get_throttles(self)` function to conditionally define throttles. Exclude throttle_classes variable
+                - f.e. for post method `self.action == create`
+    - Standard rates
+        - Messengers api 100-80/second, Facebook Instagram API 200/hour
 - Intro to Djoser library for better authentication
-- Registration and Authentication Endpoints with JWT
+    - install `pipenv install djoser`
+    - configuration: Installed app (under rest_framework)
+        - `DJOSER` setting variable `USER_ID_FIELD: "username"` (LOGIN_FIELD: EMAIL) pk for user model
+        - Adding `SessionAuthentication` to be able to use browsable api view
+        - `path('auth/', include(djoser.urls))`
+        - `path('auth/', include(djoser.urls.authtoken))`
+        - migrate
+    - List of used endpoints in djoser
+        - /users/ - all users (get) + creation(post)
+            - me/ - with token => details of user (get) + update email(put)
+            - confirm/
+            - resend_activation/
+            - set_password/
+            - reset_password/
+            - reset_password_confirm/
+            - set_username/
+            - reset_username/
+            - reset_username_confirm/
+        - /token/
+            - login/ - generate token
+            - logout/
+    - Login as superuser to use browsable api with djoser
+    - supports JWT - json web token for authentication. 2 tokens access and refresh
+        - installing `pipenv install djangorestframework-simplejwt~=5.2.1`
+        - configuration
+            - installed apps => `rest_framework_simplejwt`
+            - REST_FRAMEWORK.DEFAULT_AUTHENTICATION_CLASSES
+                - `rest_framework_simplejwt.authentication.JWTauthentication`
+            - adding patterns to `rest_framework_simplejwt` `TokenObtainPairView`, `TokenRefreshView` f.e. `api/token/` and `api/token/refresh/`
+            - Establish expiration of access token `SIMPLE_JWT = {ACCESS_TOKEN_LIFETIME = timedelta(minutes=5)}`
+            - blacklist app configuration (`TokenBlacklistView` view) (`token_blacklist` app of simple_jwt)
+            - `migrate`
+        - generate token `api/token/` with user credentials => 2 token returns
+        - Regenerate token `api/token/refresh/` = form parameter `refresh = refresh_token`
+        - blacklist token `api/token/blacklist/` same form parameter
 - User account manager
+    - user registration endpoints
+        - Djoser - `auth/users/`
+            - credentials can be passed using a post call to create a new user. No token needed.
+            - Admin user can see all users but not admin only themselves.
+    - superuser endpoints
+        - Permission `IsAdminUser`
+        - Create endpoint to assign users to manager group by username
+            - Create manager group in admin
+            - use User and Group models `django.contrib.auth.models`
+            - request.data - parsed data from request body
+            - get user and get group
+            - `managers.user_set.add(user)`
+
+- [Additional Resources](https://www.coursera.org/learn/apis/supplement/qfFJn/additional-resources)
 
 ## 4 WEEK: Recap and Project
 
