@@ -1,19 +1,7 @@
-## Prestudy
+# Description
+Notes from the "Introduction to back-end development" course from Meta on the coursera.
 
-- Roles of Back-End, Front-End, Full-Stack engineers
-- Internet technologies
-    - HTTP
-- HTML5 and CSS
-- Bootstrap, UI frameworks
-- React
-
-
-## Time
-4w 4-8 h = 16-32 h (18 h on the certificate page)
-<3h video + 4+ h reading = 7h material
-7 graded + Labs
-
-## 1 WEEK web basics
+## 1 WEEK web Basics
 ### How the Web Works
 - Intro
     - Intro to Program
@@ -474,7 +462,7 @@
         - rewrites current page
     - 2 approaches
         - Bundling - all resources
-        - Lazy loading - dynamically as required
+        - Lazy loading = Code splitting - dynamically as required
     - Web server sends not full page but f.e. json
         - Templates or Pages
     - Views
@@ -569,3 +557,26 @@
 ## Questions
 - Complete all labs by yourself (create challenges to practice technologies)
 - Bootstrap Themes?
+
+
+# Course syllabus
+1. First Week
+    - The difference between roles of back-end front-end and full-stack engineers
+    - How data is transferred in the internet? HTTP, IP, TCP protocols.
+        - Other network protocols (FTP, SFTP, UDP etc)
+    - Server-client architecture
+2. Second Week
+    - Difference between web page and web application
+    - What is dynamic and static content?
+    - HTML, CSS, JS as building blocks of a front.
+        - Structure of building, its design, its functionality
+        - What kind of html tags are exist?
+        - Layout, CSS properties, selectors
+3. Third Week
+    - Frameworks, Libraries difference?
+    - Bootstrap library
+        - Styles
+        - infixes, modifiers
+        - How grid layout is used in bootstrap?
+        - What is breakpoints, adaptive and responsive webdesign
+    - What is Rest Framework and how is it used? 
