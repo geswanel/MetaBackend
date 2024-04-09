@@ -275,3 +275,11 @@ Only lab
 - git commands: push, pull, diff, blame
 - branches, HEAD
 - forking
+
+
+## 4 WEEK: Graded assessment
+Course recap
+1. Module 1: Collaboration, VCS, History, Systems, tools, methodologies, Conflicts
+Staging, production
+2. Module 2: CLI commands, piping, redirection, std streams, flags, grep
+3. Module 3: Git technology, installation, connection via http and ssh, how git works, push, pull, commit, blame, branches, forking, lab, staging
