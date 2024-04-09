@@ -256,6 +256,22 @@
         - `git blame -L 5,15 filename` lines
         - `git blame -l filename` format full id
     - `git log -p comid` - changes in commit
-- forking
+- forking - creates clone of repo on your own github account.
+    - After changes you can make PR to compare original repo with yours.
+    - Forking repository on a github
+    - Cloning locally, making changes, pushing
+    - Making PR
+- [Additional Resources](https://www.coursera.org/learn/introduction-to-version-control/supplement/HeMS0/additional-resources)
 
 ### Creating repo with forking
+Only lab
+
+### Module Summary
+- Explain Git, branching, merging
+- local install of git
+- creating new repo and cloning
+- fundamentals of git and workflow
+- remote and local repository
+- git commands: push, pull, diff, blame
+- branches, HEAD
+- forking
