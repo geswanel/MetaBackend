@@ -45,4 +45,14 @@ Using mv, mkdir [-p], ls [-l], touch commands
 - comparing across forks
 
 ## 3: Module Quiz
-- Questions
+Questions:
+- Git commands: push, pull, clone, status, blame, branch, checkout, 
+
+## 4: Managing a project in Github
+fork => clone => update file => `diff` => commit, push
+
+## 4: Final Quiz
+Questions
+- Different cli and git commands
+- What are centralized and distributed vcs? Examples
+- What is `origin` in forked local repo
