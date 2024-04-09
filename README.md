@@ -12,3 +12,7 @@ This repository consist of notes and assignments of course from coursera.com.
 7. The Full Stack
 8. Back-End Developer Capstone
 9. Coding Interview Preparation
+
+## Additional resources to practice different technologies
+- [Git branching](https://learngitbranching.js.org/)
+- [SQL exercises](https://www.sql-ex.ru/?utm_campaign=sschool24&utm_content=pre-registration&utm_medium=email&utm_source=mindbox)
