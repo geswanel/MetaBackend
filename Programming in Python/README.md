@@ -533,6 +533,28 @@
 
 ## 5 WEEK: Recap and assignment
 
+### Course Recap
+Module 1
+    - Getting start with python
+    - System check (hardware, software, dependencies)
+    - Variables, Datatypes, casting
+    - Control flow, looping, conditionals
+Module 2
+    - Functions
+    - Data structrures: dicts, lists, tuples, sets, kwargs, args
+    - Scopes
+    - Errors, exceptions, error handling
+    - file handling
+Module 3
+    - Paradigms
+    - Functional
+        - Algorithms, complexity
+    - OOP
+        - DFS, C3 Linearization (MRO)
+Module 4
+    - using modules, libraries, tools in python
+    - writing tests
+
 
 ### Additional information
 - `__pycache__` - bytecode files to facilitate project running. Safe to delete.
