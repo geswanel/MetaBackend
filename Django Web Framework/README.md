@@ -1021,3 +1021,28 @@ def index(request):
 
 - [Additional Resources](https://www.coursera.org/learn/django-web-framework/supplement/YtwPH/additional-resources)
 
+
+## 5 WEEK: Graded Assessment
+Course recap
+1. Intro
+    - DRY
+    - MVT framework
+    - Creating an app and project structure
+    - django admin commands
+    - app and project structure
+2. Views
+    - Take http request
+    - URLconf
+    - Request Response objects
+    - regex
+    - differentiate parameters and http methods
+    - handle errors
+3. Models
+    - migrations
+    - QuerySet API
+    - form API
+    - django admin panel
+    - set up custom database
+4. Template
+    - DTL
+    - inheritance
