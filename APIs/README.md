@@ -264,6 +264,9 @@
         - **Mock API data generator** browser tool `www.mockaroo.com`
         - **Mock API endpoints** `https://mockapi.io/`
 
+### Module Summary
+
+
 ## 2 WEEK: Django REST framework\
 ### Intro to DRF
 - DRF - toolkit on top of a django => help to build robust api quickly
