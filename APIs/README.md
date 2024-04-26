@@ -710,3 +710,102 @@ class OrderView(generics.ListCreateAPIView):
 
 ## 4 WEEK: Recap and Project
 
+- Final assessment
+    - LittleLemon api project. Peer Review
+    - Final quiz
+- Project introduction video
+    - 3 types of users
+        - Managers
+        - Managers
+            - add edit and remove menu items `/api/menu-items/`
+            - add a user to a delivery group `/api/users/{userId}/groups`
+            - browse orders `/api/orders` - filter by status delivered or pending
+            - assign to a delivery person `/api/orders/{orderId}`
+        - Customers
+            - Browse menu-items. filter by categories and price ranges, search menu-items
+                - add to cart - /api/users/{userId}/cart/menu-items
+                - place an order - /api/order => emptied cart
+                - flush cart - /api/users/{userId}/cart
+                - one cart with multiple items
+                - can view own orders, status and total price
+        - Delivery
+            - Browser orders assigned to them api/orders/{orderId} /api/orders
+    - Registration and authentication `/api/users`
+    - api endpoints to assign users to a group `/api/users/{userId}/groups`
+    - Token for endpoint
+    - Throttling (5 api calls per minute)
+    - Tools
+        - vs code
+        - django and drf
+        - virtual environment
+        - insomnia
+        - only token-based authentication
+- Project structure and API routes
+    - Structure 
+        - One app LittleLemonAPI with all endpoints in it
+        - use pipenv to manage dependencies
+    - Function or class based views can be used
+        - follow api naming conventions
+    - User groups - Create some users to both groups. No group -> customer
+        - Manager
+        - Delivery crew
+    - Error check and proper status codes
+        - 200 - success other requests (get, put, patch, delete)
+        - 201 - success post requests
+        - 403 - no permission (failed authorization)
+        - 401 - not authenticted
+        - 400 - validation failed
+        - 404 - non-existing resource
+    - Endpoints
+        - registration, token generation
+            - `/api/users` - no role; POST; creating new user (name, email, password)
+            - `/api/users` `users/me` - valid token; GET; displays only current user
+            - `/token/login` - valid username and password; POST; generate token
+                - djoser?
+        - Menu items endpoints
+            - `/api/menu-items`
+                - GET - list all menu items
+                - POST, PATCH, PUT, DELETE
+                    - Customer, Delivery crew (403 unauthorized)
+                    - Manager (Creates a new item and returns 201)
+            - `/api/menu-items/{menuItem}`
+                - GET - single menu item
+                - Customer, Delivery crew - unauthorized for POST, PUT, PATCH, DELETE
+                - Manager
+                    - Put, Patch - updates a single menu item
+                    - delete - deletes it
+        - User group management endpoints - only for **Managers**
+            - `/api/groups/manager/users`
+                - GET - all managers
+                - POST - assigned the user in the payload to managers (201)
+            - `/api/groups/manager/users/{userId}`
+                - DELETE - removes user from managers user (200) or if not found (404)
+            - `/api/groups/delivery-crew/users`
+                - GET - all delivery crew
+                - POST - assign the user to delivery crew (201)
+            - `/api/groups/delivery-crew/users/{userId}`
+                - DELETE - removes from delivery-crew (200) or (404) if not found
+        - Cart management endpoints - for customer
+            - `/api/cart/menu-items`
+                - GET - list of cart items
+                - POST - add item to cart. set user id to the cart items
+                - DELETE - delete all menu items
+        - Order management endpoints
+            - `/api/orders`
+                - GET
+                    - **Customer** - all orders with items created by this user
+                    - **Manager** - all orders for all users
+                    - **Delivery crew** - assigned orders
+                - POST - **Customer** creating a new order. getting items from cart and transfering to order-items, flush cart
+            - `/api/orders/{orderId}`
+                - GET
+                    - **Customer** - all items for this order id for this user (not user's order - error status code)
+                - PUT, PATCH
+                    - **Manager** - update status (0 - out for delivery if crew assigned, 1 - delivered) and delivery crew
+                - DELETE
+                    - **Manager** - deletes order
+                - PATCH
+                    - **Delivery Crew** - update order status
+    - Additional steps
+        - implementing filtering, ordering, pagination to menu-items and order endpoints
+    - Throttling
