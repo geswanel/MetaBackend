@@ -228,6 +228,33 @@
 
 - [Additional resources](https://www.coursera.org/learn/coding-interview-preparation/supplement/d4QCl/additional-resources)
 
+### Module Summary
+1. Course introduction
+2. Coding interview
+    - Technical coding interview
+    - Appropriate tools, time constraints
+    - Code optimization
+    - Approaches to use
+    - demonstrate reasoning and best practice
+    - prepare by practice solutions
+    - employ a similar methodology
+    - Communication, importance
+    - STAR method (Situation, Task, Action, Result)
+    - Clearly convey a concept, why you are suitable
+3. Computer science
+    - Binary
+        - Positional notation
+        - Data, bytes and bits
+        - exponentiation
+    - Memory
+        - Cache
+            - Transfer rate
+        - Main - RAM + ROM
+        - Secondary
+    - Complexity - Big-O notation
+        - Time
+        - Space, input space, auxiliary space
+
 
 ## 2 Week: Introduction to data structures
 ### Basic Data structures
@@ -377,6 +404,32 @@
 
 - [Additional Resources](https://www.coursera.org/learn/coding-interview-preparation/supplement/buWGb/additional-resources)
 
+### Module Summary
+1. Datastructures
+    - Immutable vs mutable
+    - Types
+        - Linear
+            - arrays, queues, stacks, lists
+        - Non linear
+            - heap, trees, graphs
+    - Dynamic vs Static
+    - String, integer, float
+    - Arrays
+    - Linked list
+    - Sets
+        - Hash tables
+    - Stacks FILO and Queues FIFO
+    - Trees
+        - Tree terms
+        - Binary tree
+    - Hash table
+        - hashing, collisions (clashing), compression
+    - Heap - priority queue - importance
+        - max and min heaps
+        - Restructuring a tree  
+    - Graph
+        - traversal, weights, direction etc
+
 
 ## 3 Week: Introduction to Algorithms.
 ### Sorting and searching
@@ -431,3 +484,39 @@
     - Shortest path
     - Not guaranteed best solution
 - [Additional Resources](https://www.coursera.org/learn/coding-interview-preparation/supplement/SiYtc/additional-resources)
+
+### Module Summary
+1. Sorting and searching
+    - Selection, Insertion, Quick Sort
+        - complexities
+    - Linear, Binary searching
+        - complexities
+2. Approaches to algorithms
+    - D&Q
+        - merge sort
+    - Recursion - function calls itself with smaller instance of a problem
+        - requirements: Base case, diminishing structure, recursive call
+    - DP - breaking into smaller problems and use their solutions
+        - Memoization
+    - Greedy - best local solution
+
+
+## 4 Week: Final Project
+- Course recap
+    1. Interviews
+        - Technical, appropriate tools, time constraints, preparation, first impressions, communication, handling mistakes, star method, pseudocode, 
+    2. CS introduction
+        - Binary, base-2, positional notation
+        - memory types, transfer rate
+        - Time and space complexity, input vs auxiliary space
+    3. Data structures
+        - Strings, Booleans, Arrays
+        - Collections, Graphs, Heaps
+        - Linear vs Non linear; Static vs Dynamic;
+        - Stack vs Queues
+        - Sets, arrays, lists
+        - Hash tables, heaps, graphs
+    4. Algorithms
+        - Sorting => selection, insertion, quick, merge
+        - Searching => linear, binary
+        - D&Q, DP, Greedy, Recursion
