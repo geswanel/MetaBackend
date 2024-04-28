@@ -637,3 +637,246 @@ ALTER TABLE vehicle ADD FOREIGN KEY (owner_id) REFERENCES owner (owner_id);
         - Schema
         - Erd
         - Normalization
+
+
+
+# Course syllabus (SIR)
+1. Introduction to databases
+    - What is Data and it's relation mean?
+    - What is sql and how it's used with databases?
+        - What is common syntax?
+    - Relational database structure?
+        - What is entity, instance, field, column, row, table etc?
+        - What are types of keys?
+2. CRUD operations
+    - What are sql subsets and what commands are inside each of them?
+    - How to:
+        - create and drop a database
+        - create, drop, truncate table. Alter it
+        - Insert elements into table
+        - Update those elements
+        - Delete elements
+        - How to query records from a table using select statement
+            - how is insert into select used?
+3. Operators, sorting and filtering data
+    - Operators in sql
+        - arithmetic, comparison
+    - How to sort data using order by?
+    - How to filter data using where?
+    - Select distinct filtering for unique
+4. Database design
+    - What are database normalization forms and how to implement them while designing a db?
+    - What are types of database schemas and how are they related?
+    - What are keys and relations in database? How to create each type of relation in database?
+SQL Cheatsheet
+```SQL
+-- DDL
+CREATE DATABASE college;
+
+CREATE TABLE Student (col_name1 datatype(size), col_name2 datatype(size));
+
+DROP DATABASE college;
+DROP TABLE Student;
+
+ALTER TABLE Student ADD (col_name datatype(size));
+ALTER TABLE Student ADD primary key (col_name);
+
+TRUNCATE TABLE Student; --delete all data from the table but not table
+-- DML
+INSERT INTO Student (col1, col2 ...)
+VALUES (val1, val2 ...), (val1, val2 ...);
+
+UPDATE Student
+SET col = val, ,col2 = val2
+WHERE ID = '01'; -- Where clause + condition
+
+DELETE FROM Student
+WHERE ID = '02';
+
+-- DQL
+SELECT col1, col2 -- * - all columns
+FROM Student
+WHERE ID = '03';
+
+-- DCL - GRANT, REVOKE - add and remove permissions (priviliges) for and from users
+
+-- TCL - Transaction Control Language - COMMIT, ROLLBACK
+-- Grouping SQL DML statements into logical transactions
+
+
+
+
+CREATE TABLE Team_Members (
+    Name VARCHAR(50) NOT NULL,
+    City VARCHAR(30) DEFAULT "Barcelona"
+);
+
+
+
+CREATE DATABASE db_name;
+DROP DATABASE db_name;
+
+CREATE TABLE table_name (col1 datatype1, col2 datatype2, ...)
+
+ALTER TABLE table_name ADD (new_col1 datatype1, new_col2 datatype2)
+ALTER TABLE table_name DROP COLUMN col_name;
+ALTER TABLE table_name MODIFY old_col datatypechange
+
+INSERT INTO table_name (col1, col2, col3 ...) VALUES
+    (val11, val12, val13, ...),
+    (val21, val22, val23, ...);
+
+SELECT * FROM table_name
+
+
+SELECT * FROM table_name
+SELECT col1, col2 ... FROM table_name
+
+INSERT INTO table_1 (col1) SELECT col FROM table_2
+INSERT INTO country (name) SELECT DISTINCT country FROM players;
+
+
+
+UPDATE table_name
+SET col1 = val1, col2 = val2
+WHERE condition;
+
+DELETE FROM table_name;
+DELETE FROM table_name
+WHERE condition;
+
+
+
+SELECT * FROM table_name
+ORDER BY col1 ASC, col2 DESC;
+
+
+SELECT * FROM table_name
+WHERE condition
+
+
+SELECT DISTINCT col1, col2 FROM table_name;
+
+SELECT AVG(DISTINCT col)
+FROM table_name;
+
+
+
+-- Schema example
+CREATE TABLE customers (
+    customer_id INT,
+    name VARCHAR(50),
+    address VARCHAR(100),
+    phone VARCHAR(10),
+    email VARCHAR(100),
+    PRIMARY key (customer_id)
+);
+
+create table products (
+    product_id INT,
+    name VARCHAR(50),
+    price NUMERIC(8, 2),
+    description TEXT,
+    PRIMARY key (product_id)
+);
+
+CREATE TABLE cart_order (
+    order_id INT,
+    customer_id INT,
+    product_id INT,
+    quantity INT,
+    order_date DATE,
+    PRIMARY KEY (order_id),
+    FOREIGN key (customer_id) REFERENCES customers(customer_id),
+    FOREIGN key (product_id) REFERENCES products(product_id)
+);
+
+
+CREATE DATABASE restaurant;
+
+create table tbl (
+  table_id INT primary key,
+  location VARCHAR(255)
+);
+
+create table waiter (
+  waiter_id INT primary key,
+  name VARCHAR(255),
+  contact_no VARCHAR(10),
+  shift VARCHAR(10)
+);
+
+create table table_order (
+  order_id INT PRIMARY KEY,
+  date_time DATETIME,
+  table_id INT,
+  waiter_id INT,
+  FOREIGN key (table_id) REFERENCES tbl(table_id),
+  FOREIGN KEY (waiter_id) REFERENCES waiter(waiter_id)
+);
+
+CREATE TABLE customer (
+  customer_id INT PRIMARY key,
+  name VARCHAR(100),
+  phone VARCHAR(10),
+  NIC_no VARCHAR(12)
+);
+
+create table reservation (
+  reservation_id INT PRIMARY key,
+  date_time DATETIME,
+  no_of_pax INT,
+  order_id INT,
+  table_id INT,
+  customer_id INT,
+  FOREIGN key (order_id) REFERENCES table_order(order_id),
+  FOREIGN key (table_id) REFERENCES tbl(table_id),
+  FOREIGN key (customer_id) REFERENCES customer(customer_id)
+);
+
+CREATE TABLE menu (
+  menu_id INT PRIMARY key,
+  description VARCHAR(255),
+  availability INT(11)
+);
+
+CREATE TABLE menu_item (
+  menu_item_id INT PRIMARY key,
+  description VARCHAR(255),
+  price FLOAT,
+  availability INT(11),
+  menu_id INT(11),
+  FOREIGN key (menu_id) REFERENCES menu(menu_id)
+);
+
+create table order_menu_item (
+  order_id INT,
+  menu_item_id INT,
+  quantity INT,
+  PRIMARY key (order_id, menu_item_id),
+  FOREIGN key (order_id) REFERENCES table_order(order_id),
+  FOREIGN KEY (menu_item_id) REFERENCES menu_item(menu_item_id)
+);
+
+
+
+CREATE DATABASE automobile;
+
+CREATE TABLE vehicle (
+  vehicle_id VARCHAR(10),
+  owner_id VARCHAR(10),
+  plate_number VARCHAR(10),
+  phone_number INT,
+  PRIMARY KEY ( vehicle_id )
+);
+
+-- Creating owner table
+ALTER TABLE vehicle ADD FOREIGN KEY (owner_id) REFERENCES owner (owner_id);
+```
+
+
+# Project to practice
+1. Create chinook database from scratch.
+2. Create simple db with every relation type
+3. [Practice problems](https://www.sql-ex.ru/?utm_campaign=sschool24&utm_content=pre-registration&utm_medium=email&utm_source=mindbox)
+4. Leetcode sql exercises

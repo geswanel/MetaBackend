@@ -156,6 +156,8 @@ Capstone project course from Meta Back-end Developer specialization
 - Django project, static content, static routes
 - [Additional Resources](https://www.coursera.org/learn/back-end-developer-capstone/supplement/fgEe5/additional-resources)
 
+- Quiz
+
 
 ## 2 Week: Project functionality
 ### Models and Stored procedures
@@ -378,6 +380,7 @@ Capstone project course from Meta Back-end Developer specialization
         - model -> serializer -> view -> url patterns
 - [Additional resources](https://www.coursera.org/learn/back-end-developer-capstone/supplement/LltAT/additional-resources)
 
+- Quiz
 
 ## 3 Week: Security and testing
 
@@ -529,3 +532,20 @@ Capstone project course from Meta Back-end Developer specialization
     - unit test framework
     - insomnia rest client
 - [Additional Resources](https://www.coursera.org/learn/back-end-developer-capstone/supplement/QVFa8/additional-resources)
+
+
+## 4 Week: Final Grade
+- Course Recap
+    1. Starting the project
+        - composing, django to serve static html, commit to git repository
+        - set up a repo, project, commiting, static routes and content
+    2. Connecting to db and imlementing menu and table booking api
+        - setting up mysql connection, models
+        - querying the stored procedures, setting up the menu and table booking api
+    3. Security and testing
+        - Authentication and authorization
+        - insomnia testing
+        - Adding registration, login, logout functionality, table booking api, unit tests, testing api usign insomnia
+
+- Final touches to capstone project
+

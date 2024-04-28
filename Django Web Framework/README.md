@@ -1046,3 +1046,61 @@ Course recap
 4. Template
     - DTL
     - inheritance
+
+
+
+# Course Syllabus (SIR)
+1. Introduction to Django
+    - What is Django MVT model?
+        - How does MVT and MVC architecture are same and different?
+    - How to install and create a project and an app?
+    - What is structure of django project and app?
+    - How routes are defined in Django?
+    - How to create a virtual environment? Why do we use it?
+2. Views
+    - How to write a function-based view?
+    - How to write a class-based view?
+    - How to map view to static/dynamic url? How does URLConf works?
+        - What is general practice for url namespacing? How to implement it?
+        - Why do we need regex urls?
+    - What are differences between function-based and class-based views?
+        - pros and cons
+    - What is client-server aarchitecture and request-response cycle?
+        - How does http works and what is it's objects structure?
+        - what is url consist of? How to use path and query parameters in django?
+        - How to pass different http methods and retrieve payload?
+    - How to handle errors inside views?
+        - What are common exception classes?
+    - What are generic views in django and how to implement them?
+    - What is request and response objects consist of?
+3. Models
+    - How to write a simple model? What is ORM used for and how it's related to models?
+        - Using QueryAPI to work with model classes
+    - Where is database configuration defined?
+    - What is migrations and how to work with them?
+    - How to create different types of relationships in models?
+        - Foreign keys
+    - What is html form and how django helps with creating it using DTL?
+        - How to create simple form?
+        - How to create model form?
+    - What is admin panel used for?
+        - How to create superuser?
+        - How to register models in admin?
+        - How to manage groups and permissions and check them inside views?
+        - How to install, setup and connect mysql to django?
+4. Templates
+    - Why and how do we use templates in django?
+    - What are elements of DTL and their functionality?
+    - How does template inheritance works?
+    - Debugging and testing in django?
+    - What is django_debug library used for?
+
+# Practice projects
+1. To do list application
+2. E-commerse application
+
+# Additional questions
+- How does django look for templates and static files?
+- What I should do after processing post request? (Redirect or what)
+- What are default path and names for generic views templates?
+- Why do we need regex urls?
