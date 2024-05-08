@@ -708,6 +708,7 @@ class OrderView(generics.ListCreateAPIView):
 
 - [Additional Resources](https://www.coursera.org/learn/apis/supplement/qfFJn/additional-resources)
 
+
 ## 4 WEEK: Recap and Project
 
 - Final assessment
@@ -809,3 +810,194 @@ class OrderView(generics.ListCreateAPIView):
     - Additional steps
         - implementing filtering, ordering, pagination to menu-items and order endpoints
     - Throttling
+
+
+
+# Course Syllabus
+1. REST API
+    1. HTTP Recap
+        - Http Protocol request and response structure and request-response cycle      
+            - Request: Version, path, method, headers, body
+                Headers examples: cookies, user-agents, refers
+            - Response: Requested resource, content type, content length, headers
+                - ETags, time last modified, http status code
+        - http methods: get, post, put, patch, delete
+        - Http status codes
+            - 100-199, 200-299, 300-399, 400-499, 500-599
+            - Popular: 200, 201, 400, 401, 403, 404, 500
+        - HTTPS and encryption
+    2. API Design
+        - Response types: html, json, xml, yaml
+        - RESTfulness
+            - Goal: Easy way to get data from the server
+            - Constraints: server-client, cacheable, stateless, layered (firewall-loadbalancer-webserver-database)
+            - uniform interface
+        - naming conventions
+            - lowercase, nouns, full words, divide with hyphen `-`, no traling slash, slash for hierarchy, vars in camelCase in brakets `{userId}`, filtering with query string
+        - Tools and creating api project
+            - Django, DRF, Djoser, Bleach, Django debug, Insomnia, curl, cmd, httpbin
+        - Environment: vscode, python, vscode python extension, python indent + djaneiro, pipenv
+        - **Principles**
+            - REST
+                - KISS - keep it simple stupid
+                    - one api for one feature
+                - Filter, Order, Paginate in query string
+                - Versioning - maintain 2 version of any given resource
+                - Caching
+                - Throttling
+            - Security in REST API
+                - SSL
+                - Signed urls - calls only from your app and website only
+                    - HMAC signature
+                - Authentication - login
+                    - Token vs password authentication
+                - Authorization - access (user roles)
+                - CORS - accept calls from some specific domains
+                - Firewall - specific ip addresses
+    3. First API
+        - JSON and XML
+        - First api with django (without drf)
+            - JsonResponse from Django
+        - Mock API
+            - Creating endpoints with sample data in dictionaries. Hardcoded responses
+        - Versioning
+2. DRF Views Serializers
+    0. Installation
+    1. Views
+        - api_view decorator for function-based views
+            - passing method names, if conditioning, options, throttling, authentication
+        - APIView class
+        - Generics (List, Create, Retrieve, Update, Delete and their combinations)
+            - queryset, serializer
+        - ViewSet
+            - list, create, retrieve, update, delete, partial_update
+            - ModelViewSet
+                - queryset, serializer
+        - Permissions
+            - permission_classes attribute
+            - get_permissions method
+            - get_queryset for filtering
+        - Routing in DRF
+            - regular `path(endpoint, view)`
+            - object class static method `path(endpoint, class.func)`
+            - Class Based or generics `path(., class.as_view())`
+            - Viewsets `as_view({method: func})`
+            - Routers (`SimpleRouter` `DefaultRouter`)
+                - trailing_slash - false
+        - Getting parameters from request
+            - request.GET.get('') from query string
+            - request.data.get('') from body json
+    2. Serializers
+        - What is serializer and its functions?
+            - parsing models <-> json
+            - validate
+            - `serializers.py` file`
+        - how to create and use Serializer?
+            - `many`
+            - serializer.data
+        - How to create and use ModelSerializer?
+            - Meta class with model and fields
+                - alias (source argument)
+                - SerializerMethodField (method_name argument)
+        - How to manage relations in serializers?
+            - Just Pass field -> ids
+            - RelatedField, StringRelatedField (str)
+                - select_related('model')
+            - Nested fields
+                - Creating serializer for related field
+                - depth field of Meta class
+            - Hyperlinks
+                - `HyperlinkedRelatedField` - queryset + view_name
+                - HyperlinkedModelSerializer
+        - Deserialization and validation of user input?
+            - `serializer(data=request.data)`
+            - `serializer.is_valid(raise_exception)`
+            - `.save()` `.validated_data`
+    3. Renderers
+        - What is renderers and how to use them?
+            - `REST_FRAMEWORK` setting `DEFAULT_RENDERER_CLASSES`
+            - third party `djangorestframework-xml`
+            - `decorators.renderer_classes`
+        - How to give a client an access to different formats?
+            - `format=xml` querystring parameter in url
+        - Types
+            - TemplateHTMLRenderer
+            - StaticHTMLRenderer -> no DTL
+            - CSV renderer (3rd party)
+            - YAML renderer
+            - JSON, BrowsableAPI
+            - XML
+        - Pass in Headers `Accept` argument?
+    - Some tools
+        - `django-debug-toolbar`
+            - SQL optimization, profiling, headers, caching
+3. DRF Searching, Ordering, Filtering, Security and access control
+    1. Filtering, Ordering, Searching, Data sanitization (`bleach`), Caching
+        - Getting parameters from querystringg
+        - Filtering and searching
+            - if parameter exists => filtering
+            - `queryset.filter()`
+                - `field__lookup`
+                - `related__field`
+            - `filter(title__contains)` or `startswith`, `icontains`
+            - class-based
+                - `DEFAULT_FILTER_BACKENDS:`
+                    `django_filters.rest_framework.DjangoFilterBackend`
+                    `rest_framework.filters.SearchFilter`
+                - `search_fields=[]`
+        - Ordering
+            - `ordering=f1,-f2`
+            - `queryset.order_by(f1, -f2)`
+            - class-based
+                - `DEFAULT_FILTER_BACKENDS:`
+                    - `rest_framework.filters.OrderingFilter`
+                - ordering_fields=[...]
+                    - `related__field` for related fields
+        - Data Validation
+            - Constrainst in the field `(DecimalField(min_value=2))`
+            - `extra_kwargs` in Meta Class to pass field arguments
+            - `validate_field` method `ValidationError` exception
+            - `validate` method 
+            - Unique Validator - queryset
+                - in field or extra_kwargs
+            - UniqueTogetherValidator - queryset and fields - in Meta
+        - Data Sanitization
+            - HTML injection - `bleach` package - `bleach.clean(value)`
+            - SQL injection - avoid some practices
+        - Pagination
+            - `perpage` and `page` parameters
+            - function based - `django.core.paginator` `Paginator` class `EmptyPage` exception
+            - class based
+                - `REST_FRAMEWORK`
+                    - `DEFAULT_PAGINATION_CLASS: rest_framework.pagination.PageNumberPaginator`
+                    - `PAGE_SIZE: 2`
+        - Caching - can happen in multiple levels
+    2. Security
+        - Authentication (Token, JWT) (`Djoser`)
+            - Token Based
+                1. `rest_framework.authtoken` -> migrate
+                2. permissions (@permission_classes)
+                3. REST_FRAMEWORK -> DEFAULT_AUTHENTICATION_CLASSES += ['rest_framework.authentication.TokenAuthentication']
+                4. Token `token` when sending request by client
+                5. rest_framework.authtoken.views.obtain_auth_token
+        - Authorization
+            - User Roles - `request.user.groups.filter(name="groupname").exists()`
+        - Throttling
+            - `REST_FRAMEWORK` -> `DEFAULT_THROTTLE_RATES` -> {"anon":'2/minute', "user":"1/minute", "custom":} 
+            - anon - `rest_framework.throttling.AnonRateThrottle`
+            - user - `UserRateThrottle`
+            - using
+                - `throttles.py` file
+                - @throttle_classes
+                - throttle_classes field
+                - `get_throttles(self)` method
+        - Djoser
+            - settings `DJOSER` -> `USER_ID_FIELD: 'username'` adding 
+            - SessionAuthentication
+            - auth/ djoser.urls and djoser.urls.authtoken
+            - Using JWT with Djosers -> Blacklist, Refresh, ObtainPair, `rest_framework_simplejwt` JWTAuthentication classs 
+                - settings `SIMPLE_JWT` `{'ACCESS_TOKEN_LIFETIME: timedelta(days=5)}` 
+        - User Management
+            - `IsAdminUser`
+            - group.user_set.add(user) - to assign user to a group
+4. Final project!
