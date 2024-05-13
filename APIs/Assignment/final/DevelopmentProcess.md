@@ -21,6 +21,10 @@ Questions
 - How to use related fields serializers with post calls in APIView?
 - How to pass existing object for serializer to save?
     - instead of getting object via model and assigning fields during put request, just pass data to serializer and use save method
+- How to automatically return error codes?
+- How to login in browsable view (not using insomnia)?
+- How to post items with depth or different relaed fields?
+- Status codes for invalid payload and not found objects and related objects (400, 404, 422?)
 
 ## Step by step guide
 1. Creating environment

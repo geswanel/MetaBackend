@@ -717,7 +717,6 @@ class OrderView(generics.ListCreateAPIView):
 - Project introduction video
     - 3 types of users
         - Managers
-        - Managers
             - add edit and remove menu items `/api/menu-items/`
             - add a user to a delivery group `/api/users/{userId}/groups`
             - browse orders `/api/orders` - filter by status delivered or pending
@@ -732,7 +731,7 @@ class OrderView(generics.ListCreateAPIView):
         - Delivery
             - Browser orders assigned to them api/orders/{orderId} /api/orders
     - Registration and authentication `/api/users`
-    - api endpoints to assign users to a group `/api/users/{userId}/groups`
+    - api endpoints to assign and remove users to a group `/api/users/{userId}/groups`
     - Token for endpoint
     - Throttling (5 api calls per minute)
     - Tools
@@ -810,8 +809,81 @@ class OrderView(generics.ListCreateAPIView):
     - Additional steps
         - implementing filtering, ordering, pagination to menu-items and order endpoints
     - Throttling
+- Creating models (Schema)
+    - User existing 
+```python
+class Category(models.Model):
+    slug = models.SlugField()
+    title= models.CharField(max_length=255, db_index=True)  # index for search
 
 
+class MenuItem(models.Model):
+    title = models.CharField(max_length=255, db_index=True)
+    price = models.DecimalField(max_digits=6, decimal_places=2, db_index=True)
+    featured = models.BooleanField(db_index=True)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT)
+
+
+class Cart(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
+    quantity = models.SmallIntegerField()
+    unit_price = models.DecimalField(max_digits=6, decimal_places=2)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+
+    class Meta:
+        unique_together = ('menu_item', 'user')
+
+
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    delivery_crew = models.ForeignKey(User, on_delete=models.SET_NULL, related_name="delivery_crew", null=True)
+    status = models.BooleanField(db_index=True, default=0)
+    total = models.DecimalField(max_digits=6, decimal_places=2)
+    date = models.DateField(db_index=True)
+
+
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
+    quantity = models.SmallIntegerField()
+    unit_price = models.DecimalField(max_digits=6, decimal_places=2)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+
+    class Meta:
+        unique_together = ('order', 'menu_item')
+
+```
+
+- Peer-Graded assignment
+    - Functionalities to check
+        1.	The admin can assign users to the manager group
+        2.	You can access the manager group with an admin token
+        3.	The admin can add menu items 
+        4.	The admin can add categories
+        5.	Managers can log in 
+        6.	Managers can update the item of the day
+        7.	Managers can assign users to the delivery crew
+        8.	Managers can assign orders to the delivery crew
+        9.	The delivery crew can access orders assigned to them
+        10.	The delivery crew can update an order as delivered
+        11.	Customers can register
+        12.	Customers can log in using their username and password and get access tokens
+        13.	Customers can browse all categories 
+        14.	Customers can browse all the menu items at once
+        15.	Customers can browse menu items by category
+        16.	Customers can paginate menu items
+        17.	Customers can sort menu items by price
+        18.	Customers can add menu items to the cart
+        19.	Customers can access previously added items in the cart
+        20.	Customers can place orders
+        21.	Customers can browse their own orders
+    - building
+        - pipenv to create environment, django drf, djoser
+        - LittleLemon - LittleLemonAPI
+        - notes.txt file for credentials of every user
+    - reviewing
 
 # Course Syllabus
 1. REST API
