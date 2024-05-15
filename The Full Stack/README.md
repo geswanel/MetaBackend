@@ -1,5 +1,3 @@
-
-
 ## 1 WEEK: Introduction to the full stack
 
 ### Intro to course
@@ -902,7 +900,9 @@ function() {
         - simpler interface because of wrapper around `XMLHttpRequest`
 
 - Exercise: Submitting form with JS
-
+    - Setting up a js event to submit form data as json object
+    - display a successful form submittion alert using js
+    - Create a form, model and template with js code using fetch to make call!
 
 - Questions
     - Do I need to make redirect when processing a post request?
@@ -910,6 +910,15 @@ function() {
         - What is JS fetch api and how to use it properly?
 
 ### Module Summary
+- Django recap
+- API recap
+- Environment check
+- virtual, global, pipenv, mysqlclient, mysql connection
+- DB and MySQL connection
+- models and migrations recap
+- Forms and ModelForms recap
+    - model -> modelform -> configuring a view
+- Fetching data using JS to process simple forms
 
 
 - [Additional Resources](https://www.coursera.org/learn/the-full-stack/supplement/nuH7u/additional-resources)
@@ -1056,7 +1065,7 @@ function() {
         - linear
     - Web server and DB server scaling
     - 2 types of scaling
-        - vertical - quicker, easier configuration, has limitation, costly, repairs, not infinite
+        - vertical - quicker, easier configuration, has limitation, costly, repairs, not infinite. Add resources
         - horizontal - more efficient and cost effective
             - add nodes as the load goes up, and remove as goes down
             - database replication or clustering - multiple nodes
@@ -1102,4 +1111,102 @@ function() {
 - Questions
     - What is reverse-proxy?
 
+### Module Summary
+Production environments
+- Webserver environments
+    - Deployment
+        - CI - tests
+        - CD - uploading process
+    - Server or Serverless
+    - VM and contarization
+        - Type-1
+        - Type-2
+    - Resource sharing
+- Containerization
+    - Pod - group of containers with same resource
+    - Node - multiple pods
+    - Container orchestration
+- PaaS, SaaS, DBaaS, IaaS, Self-Hosted
+- Cloud computing - vm on-demand deployment
+    - Public
+    - Private
+    - Hybrid
+- Storage
+- Machine Learning
+- Networking in the cloud
+- Scaling in the cloud
+    - Vertical - add resources
+    - Horizontal - configuration, nodes, virtual servers
+    - Auto-scaling
+- Load balancing
+    - Round robin
+    - Health based
+    - Reverse proxy
+- CDN - caching static asseets
+
+
 ## 5 WEEK: Final project
+- Course Recap
+    0. Connect to mysql, setting api, create app displaying available booking times
+    1. Full Stack
+        - everything to create and deliver a functioning application
+        - DevOps Skills
+        - VCS
+        - N-tier architecture (Security, Scalability, Maintanence)
+        - Client-server architecture
+    2. Front-end technologies
+        - HTML - form, input types validation
+        - CSS - layouts, grids, flexboxes, selectors, pseudo-classes and elements
+        - JS - interactivity, DOM manipulation, datatypes, event handling, Libraries and frameworks
+    3. Recap
+        - Django, APIs, DB, Tools, DRF
+        - JS Fetch api
+    4. Production environments
+        - Web server environments and deployment
+        - CI/CD (tests and uploading)
+        - Server and Serverless
+        - VM: Type-1 type-2
+        - Containerization
+        - PaaS, IaaS, SaaS, DBaaS etc
+        - Cloud infrustructure
+            - computing unit
+            - storage options
+            - Netwroking ,scaling, load balancing
+        - CDNs
+- Final Assignment
+    - Exercises
+        - connect to mysql
+        - setup a little lemon api
+            - create a view to process form data entered
+        - display booking
+    - Essentials
+        - Creating an new user for mysql db.
+
+
+
+# Course Syllabus (SIR)
+1. Introduction to the fullstack
+    - N-tier architecture
+    - Client-server architecture
+2. Front-end technologies
+    - HTML
+        - Tags and semantic tags
+        - Form validation and submittion
+            - input types
+    - CSS
+        - Web Layout
+        - Selectors
+        - Document flow, grids, flexbox, inline, block
+        - Pseudo-classes and pseudo-elements
+    - JS
+        - Variables, var, let, const
+        - datatypes, operators
+        - Selectors
+        - Functions
+        - DOM manipulations
+        - Event handling
+        - Framework and libraries
+3. The full-stack with Django
+    - Django architecture
+    - Django and MySQL db
+    - Django and Frontend
