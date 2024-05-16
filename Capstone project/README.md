@@ -352,7 +352,7 @@ Capstone project course from Meta Back-end Developer specialization
         - `items/<int:pk>`
     5. Check if everything works
     - Question
-        - Why to use `RetrieveUpdataAPIView` `DestroyAPIView` separately but not `RetrieveUpdataDestroyAPIView`?
+        - Why to use `RetrieveUpdateAPIView` `DestroyAPIView` separately but not `RetrieveUpdataDestroyAPIView`?
         - Naming conventions for routes names in path function
 - **Exercise: Set up the table booking API**
     1. Ensure that rest framework installed and added to installed apps
