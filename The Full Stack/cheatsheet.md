@@ -3,9 +3,14 @@ Cheatsheet from this course
 
 ## bash and mysql
 ```bash
+CREATE DATABASE reservations;
+SHOW databases;
 CREATE USER 'admindjango'@'localhost' IDENTIFIED BY 'employee@123!';
 GRANT ALL ON *.* TO 'admindjango'@'localhost';
 FLUSH PRIVILEGES;
+
+
+mysql -u root -p
 
 ```
 
@@ -54,4 +59,27 @@ for (let i = 0; i < 10; i++) {
 
 }
 
+```
+
+
+## Django
+```python
+from django.forms import ModelForm
+from .models import MyModel
+
+class MyForm(ModelForm):
+    class Meta:
+        model = MyModel
+        fields = "__all__"
+
+
+def my_view(request):
+    date = request.GET.get('date',datetime.today().date())
+    items = MyModel.objects.all()
+    items_json = serializers.serialize('json', items)   # django.core.serializers
+    return render(request, 'mytemplate.html',{"items":items_json})
+
+@csrf_exempt    # why?
+def my_view2(request):
+    pass
 ```

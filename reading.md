@@ -1,0 +1,197 @@
+# Introduction to Back-End Development
+- **[What is a Web Server? (NGINX)](https://www.nginx.com/resources/glossary/web-server/)**
+- **[What is a Web Browser? (Mozilla)](https://www.mozilla.org/en-US/firefox/browsers/what-is-a-browser/)**
+- [Who invented the Internet? And why? (Kurzgesagt)](https://youtu.be/21eFwbb48sE)
+- **[What is Cloud Computing? (Amazon)](https://youtu.be/mxT233EdY5c)**
+- **[Browser Engines (Wikipedia)](https://en.wikipedia.org/wiki/Browser_engine)**
+- **[HTTP Overview (Mozilla)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview)**
+- **[Introduction to Networking by Dr.Charles R Severance](https://www.amazon.com/Introduction-Networking-How-Internet-Works/dp/1511654945/)**
+- [Chrome Developer Tools Overview (Google)](https://developer.chrome.com/docs/devtools/overview/)
+- [Firefox Developer Tools User Docs  (Mozilla)](https://firefox-source-docs.mozilla.org/devtools-user/index.html)
+- [Getting Started with Visual Studio Code  (Microsoft)](https://code.visualstudio.com/docs)
+- [HTML Elements Reference (Mozilla)](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
+- [The Form Element (Mozilla)](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)
+- [What is the Document Object Model? (W3C)](https://www.w3.org/TR/WD-DOM/introduction.html)
+- [ARIA in HTML (W3C via Github)](https://w3c.github.io/html-aria/)
+- [ARIA Authoring Practices  (W3C)](https://www.w3.org/TR/wai-aria-practices-1.2/)
+- [CSS Reference (Mozilla)](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)
+- [HTML and CSS: Design and build websites by Jon Duckett](https://www.amazon.com/HTML-CSS-Design-Build-Websites/dp/1118008189/)
+- [CSS Definitive Guide  by Eric Meyer](https://www.amazon.com/CSS-Definitive-Guide-Visual-Presentation/dp/1449393195/)
+- [Bootstrap Official Website](https://getbootstrap.com/)
+- [Bootstrap 5 Foundations by Daniel Foreman](https://www.amazon.com/Bootstrap-Foundations-Mr-Daniel-Foreman/dp/B0948GRS8W/)
+- [Responsive Web Design with HTML5 and CSS  by Ben Frain  ](https://www.amazon.com/Responsive-Web-Design-HTML5-CSS/dp/1839211563/)
+- [Bootstrap Themes](https://themes.getbootstrap.com/)
+- [React Official Website](https://reactjs.org/)
+- **[Choosing between Traditional Web Apps and Single Page Apps (Microsoft)](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/choose-between-traditional-web-and-single-page-apps)**
+- [React Source Code (Github)](https://github.com/facebook/react)
+- **[Introduction to React.js](https://youtu.be/XxVg_s8xAms)**
+# Programming with Python
+- *[Python built-in functions](https://docs.python.org/3/library/functions.html)*
+- [W3Schools](https://www.w3schools.com/python/default.asp)
+- ***[Practice skills](https://www.hackerrank.com/domains/python)***
+- [Control flow](https://docs.python.org/3/tutorial/controlflow.html)
+- [Conditional operators](https://www.w3schools.in/what-is-conditional-operator)
+- [Conditional statements](https://realpython.com/python-conditional-statements/)
+- [Python datastructures](https://docs.python.org/3/tutorial/datastructures.html)
+- [datastructures](https://realpython.com/python-data-structures)
+- [Exception and Errors](https://docs.python.org/3/library/exceptions.html)
+- [File handling](https://pynative.com/python/file-handling/)
+- [programming styles in python](https://newrelic.com/blog/nerd-life/python-programming-styles)
+- [types of algorithms in python](https://www.thetechplatform.com/post/different-types-of-algorithms-in-data-structure)
+- [Big-O](https://dev.to/sarah_chima/the-big-o-notation-an-introduction-34f7)
+- [map, reduce, comprehensions](https://www.knowledgehut.com/blog/programming/python-map-list-comprehension)
+- [recursion](https://realpython.com/python-recursion/)
+- [Functional programming](https://stackabuse.com/functional-programming-in-python/)
+- ***[OOP Principles and MRO](https://www.coursera.org/learn/programming-in-python/supplement/zHCMs/additional-resources)***
+- [Python modules aand packages](https://www.coursera.org/learn/programming-in-python/supplement/8XRBa/additional-resources)
+- [Popular packages](https://www.coursera.org/learn/programming-in-python/supplement/x83Wt/additional-resources)
+- [Testing](https://www.coursera.org/learn/programming-in-python/supplement/Ew9TM/additional-resources)
+    - **TDD**, Pytest, ***Test automation*** packages in python
+# Version Control
+- [about vcs](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control)
+- [list of vcs software](https://en.wikipedia.org/wiki/List_of_version-control_software)
+- **[benefits of a distributed VCS](https://about.gitlab.com/topics/version-control/benefits-distributed-version-control-system/)**
+- [What is cloning](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+- ***[AGILE](https://www.planview.com/resources/guide/agile-methodologies-a-beginners-guide/)***
+- [installing git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- **[Bash reference](https://www.gnu.org/software/bash/manual/html_node/index.html#SEC_Contents)**
+- **[Bash Redirections](https://www.gnu.org/software/bash/manual/html_node/Redirections.html#Redirections)**
+- **[Bash Cheatsheet](https://devhints.io/bash)**
+- ***[Grep Cheatsheet](https://devhints.io/grep)***
+- **[Grep Manual](https://man7.org/linux/man-pages/man1/grep.1.html)**
+- [History and Timeline of Unix](https://unix.org/what_is_unix/history_timeline.html)
+- [History of vim](https://en.wikipedia.org/wiki/Vim_(text_editor))
+- [Absolute vs relative path](https://www.geeksforgeeks.org/absolute-relative-pathnames-unix/)
+- **[Unix command cheatsheet](https://cheatography.com/jluis/cheat-sheets/bash-and-unix-commands/)**
+- [Vim cheatsheet](https://vim.rtorr.com/)
+- **[Git cheatsheet](https://education.github.com/git-cheat-sheet-education.pdf)**
+- **[Git patterns and anti-patterns for successful developers](https://youtu.be/t_4lLR6F_yk)**
+# Introduction to Databases for Back-End Development
+- **About databases, choose any**
+    - [Oracle](https://www.oracle.com/uk/database/what-is-database/)
+    - [Javapoint](https://www.javatpoint.com/types-of-databases)
+    - [IBM](https://www.ibm.com/cloud/learn/relational-databases)
+    - [Tutorialspoint](https://www.tutorialspoint.com/Types-of-databases)
+    - [Graphdatamodeling](http://graphdatamodeling.com/GraphDataModeling/History.html)
+- *SQL intro*
+    - [Javapoint](https://www.javatpoint.com/dbms-sql-introduction)
+    - [Beginnersbook](https://beginnersbook.com/2018/11/introduction-to-sql/)
+- Database design and relational db structure
+    - [Microsoft](https://support.microsoft.com/en-us/office/database-design-basics-eb2159cf-1e30-401a-8084-bd4f9c9ca1f5)
+    - [IBM](https://www.ibm.com/docs/en/control-desk/7.6.0?topic=design-relational-database-structure)
+- Datatypes declaration and use of datatypes
+    - [Datatypes1](https://www.w3schools.com/sql/sql_datatypes.asp)
+    - [Datatypes2](https://www.w3resource.com/mysql/mysql-data-types.php)
+    - [Numeric](https://learnsql.com/blog/understanding-numerical-data-types-sql/)
+    - [decimal and numeric](https://docs.microsoft.com/en-us/sql/t-sql/data-types/decimal-and-numeric-transact-sql?view=sql-server-ver16s)
+    - [numeric](https://dev.mysql.com/doc/refman/8.0/en/numeric-types.html)
+- CRUD
+    - [SQL tutorials 1](https://www.tutorialspoint.com/sql/index.htm)
+    - [SQL tutorials 2](https://www.javatpoint.com/sql-tutorial)
+    - [create db](https://www.tutorialrepublic.com/sql-tutorial/sql-create-database-statement.php)
+    - [Tutorials 3](https://www.w3schools.com/sql)
+- Operators
+    - [operators 1](https://www.w3schools.com/sql/sql_operators.asp)
+    - [Arithmetic](https://www.javatpoint.com/sql-arithmetic-operators)
+    - [operators 2](https://www.tutorialspoint.com/sql/sql-operators.htm)
+    - [Comparison](https://www.w3resource.com/sql/comparison-operators/sql-comparison-operators.php)
+- ***Schemas***
+    - [Intro](https://www.prisma.io/dataguide/intro/intro-to-schemas)
+    - [Schemas 1](https://www.lucidchart.com/pages/database-diagram/database-schema)
+    - [Example](https://www.educative.io/blog/what-are-database-schemas-examples)
+    - [Schemas 2](https://www.ibm.com/cloud/learn/database-schema)
+- **Design**
+    - [Relational db](https://www.oracle.com/database/what-is-a-relational-database/)
+    - [DBMS](https://www.scaler.com/topics/dbms/relational-model-in-dbms/)
+    - ***[Keys](https://www.ibm.com/docs/en/ida/9.1.1?topic=entities-primary-foreign-keys)***
+    - [Relationship](https://opentextbc.ca/dbdesign01/chapter/chapter-8-entity-relationship-model/)
+    - [Normalization 1](https://opentextbc.ca/dbdesign01/chapter/chapter-12-normalization/)
+    - [Normalization 2](https://www.databasestar.com/database-normalization/)
+    - [Normalization 3](https://www.bbc.co.uk/bitesize/guides/zc93tv4/revision/2)
+# Django Web Framework
+- [intro](https://www.coursera.org/learn/django-web-framework/supplement/yqDlw/additional-resources)
+    - Django official website and documentation, installing vscode and django, ***setting up virtual environment venv***
+- [MVT + first project](https://www.coursera.org/learn/django-web-framework/supplement/0AF6Z/additional-resources)
+    - ***Writing our first Django app***, ***MVT architecture***, ***How to structure your django project***
+- [Views](https://www.coursera.org/learn/django-web-framework/supplement/S9v2H/additional-resources)
+    - creating views, class-based, render, query parameters, http server responses
+- [url conf](https://www.coursera.org/learn/django-web-framework/supplement/8VHUC/additional-resources)
+    - URL conf, regex, url mapping, url parameters, render html forms, http request response objects
+- [Models, Migrations, ORM](https://www.coursera.org/learn/django-web-framework/supplement/kbX1B/additional-resources)
+    - Models, Migrations, Model instance methods, understanding orm
+- ***[Admin, authentication, permissions](https://www.coursera.org/learn/django-web-framework/supplement/zB9d0/additional-resources)***
+    - django-admin and manage.py, authentication system, admin-site, permissions
+- [Mysql](https://www.coursera.org/learn/django-web-framework/supplement/f8Ong/additional-resources)
+    - installing mysql, mysqlclient, Databases in django
+- [Testing](https://www.coursera.org/learn/django-web-framework/supplement/YtwPH/additional-resources)
+    - Django testing, advanced, META header, unit testing
+# APIs
+- ***SIGNED API CALLS***
+- REST, SOLID, AGILE
+- [API fund + environment](https://www.coursera.org/learn/apis/supplement/D1h15/additional-resources)
+    - **curl**, httpie, postman, insomnia, httpbin, python, vscode, **python indent,** **djaneiro**, pipenv, django, http
+- [DRF](https://www.coursera.org/learn/apis/supplement/SOhsP/additional-resources)
+    - ***drf for building apis, django-debug-toolbar, drf router documentation***
+- [Renderers](https://www.coursera.org/learn/apis/supplement/tsdUA/additional-resources)
+    - ***XML, YAML, JSONP renderers***
+- [***Security and Cache***](https://www.coursera.org/learn/apis/supplement/rw4od/additional-resources)
+    - ***REDIS***
+- [***Djoser and JWT***](https://www.coursera.org/learn/apis/supplement/qfFJn/additional-resources)
+# The Full Stack
+- [Stack](https://www.coursera.org/learn/the-full-stack/supplement/c6i9J/additional-resources)
+    - python, django drf, js, typescript, react, mysql, mariadb, postgresql documentations
+- [HTML](https://www.coursera.org/learn/the-full-stack/supplement/UytSF/additional-resources)
+    - meta tags, semantic tags, client-side validation, input elements, form validation
+- [CSS](https://www.coursera.org/learn/the-full-stack/supplement/NHUaj/additional-resources)
+    - layout, flexboxes, grids, selectors, pseudo-classes and elements
+- [JS](https://www.coursera.org/learn/the-full-stack/supplement/Bs7qU/additional-resources)
+    - expressions and operators, precedence, js primitives, jquery, react, modules, dom, query selector, events, working with json
+- [TOOLS](https://www.coursera.org/learn/the-full-stack/supplement/bZ44Z/additional-resources)
+    - pipenv, pip, sqlite, mysql, mariadb, postman, insomnia, git, react, npm, webpack, drf, etc,
+- [MySQL with djanog](https://www.coursera.org/learn/the-full-stack/supplement/7IeDL/additional-resources)
+- [node js](https://www.coursera.org/learn/the-full-stack/supplement/nuH7u/additional-resources)
+- [**web server environments**](https://www.coursera.org/learn/the-full-stack/supplement/72eRY/additional-resources)
+# Back-End Developer Capstone
+- Environment
+    - Installing python, git, django, creating django project, establish mysql connection
+- [VCS + django](https://www.coursera.org/learn/back-end-developer-capstone/supplement/MYoJb/additional-resources)
+    - What is VCS, Git and Github, github account, creating and cloning repo, **Git staging versus production**, *Remote versus local*, Add and commit, push and pull, branches
+    - Project and apps, project structure, django admin and manage.py commands, app structure, creating app, what is web framework, mvt overview, understanding urls, mapping urls with params, class-based views
+- [VCS + Django](https://www.coursera.org/learn/back-end-developer-capstone/supplement/fgEe5/additional-resources)
+    - **Staging vs production**, Remote vs local, add and commit, push and pull, branches
+    -  django admin and manage.py commands, app structure, creating app, what is web framework, mvt overview, understanding urls, mapping urls with params, class-based views
+- [MySQL](https://www.coursera.org/learn/back-end-developer-capstone/supplement/Z4TxE/additional-resources)
+    - Database options, configuring mysql connection, setting up mysql connection
+- [DRF + APIs](https://www.coursera.org/learn/back-end-developer-capstone/supplement/LltAT/additional-resources)
+    - What is DRF, installing and setting up drf, **better api view with decorator, function and class-based views, different types of routing in drf, generic views and viewsets**
+    - **REST best practices**, **Security and authentication in rest api**, Access control, Authentication vs Authorization, **serializers, model serializer, deserializer and validation, renderers**
+- [Securing the api + user authentication](https://www.coursera.org/learn/back-end-developer-capstone/supplement/WEZOz/additional-resources)
+    - Token-based in drf, djoser, jwt registration and authentication, testing in django, sub-classes generic views
+# Coding Interview Preparation
+- Intro
+    - [Technical Questions](https://www.indeed.com/career-advice/interviewing/common-technical-interview-questions-and-answers)
+    - [Preparation for an interview](https://www.experis.com/en/insights/articles/2021/05/25/20-tips-for-great-job-interviews)
+    - [Pseudocode](https://www.interviewkickstart.com/learn/how-to-write-pseudocode)
+    - [Practice coding problems](https://www.zdnet.com/education/computers-tech/practice-coding-problems/)
+    - [Time space costs](https://www.cs.utexas.edu/users/djimenez/utsa/cs1723/lecture2.html)
+    - [Space complexity](https://www.scaler.com/topics/data-structures/space-complexity-in-data-structure/)
+    - **[Heap vs Stack memory](https://courses.engr.illinois.edu/cs225/fa2022/resources/stack-heap/)**
+- Data structures
+    - [Array basics](https://www.cs.fsu.edu/~myers/c++/notes/arrays.html)
+    - [Immutable vs Mutable](https://www.compositional-it.com/news-blog/immutable-data-structures-in-f/)
+    - **[First class objects](https://isaaccomputerscience.org/concepts/prog_func_first_class_objects?examBoard=all&stage=all)**
+    - [Java tree APIs](https://www.developer.com/design/understanding-java-tree-apis/)
+    - [Binary tree in C](https://data-flair.training/blogs/binary-tree-in-c/)
+    - [C# collections](https://www.tutorialspoint.com/csharp/csharp_collections.htm)
+    - [Trees](https://isaaccomputerscience.org/concepts/dsa_datastruct_tree?examBoard=all&stage=all)
+    - [Array-based lists](https://opendatastructures.org/ods-cpp/2_Array_Based_Lists.html)
+    - **[Static vs Dynamic data structures](https://www.scaler.com/topics/static-and-dynamic-data-structure/)**
+    - [Birthday paradox - collisions](https://www.scientificamerican.com/article/bring-science-home-probability-birthday-paradox/)
+    - [Graphs](https://www.naukri.com/learning/articles/graphs-in-data-structure-types-representation-operations/)
+    - [Heaps](https://www.cs.auckland.ac.nz/software/AlgAnim/heaps.html)
+- Algorithms
+    - [Complexity of selection sort](https://iq.opengenus.org/time-complexity-of-selection-sort/)
+    - [Quick sort](https://www.commonlounge.com/quick-sort-video-tutorial-pseudo-code-and-in-place-sorting-608c5c7284b148eb9d550e6166303142/)
+    - [Algorithms](https://networkx.org/documentation/stable/reference/algorithms/index.html)
+    - [Space complexity](https://algodaily.com/lessons/understanding-space-complexity)
+    - [Recursion](https://web.mit.edu/6.031/www/fa20/classes/16-recursive-data-types/)

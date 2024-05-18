@@ -559,3 +559,53 @@ Module 4
 ### Additional information
 - `__pycache__` - bytecode files to facilitate project running. Safe to delete.
 - `super` usage
+
+
+# Course Syllabus (SIR)
+1. Getting started with python
+    - What are differences between compiled and interpreted programming languages?
+    - What is programming language used for?
+    - What are programming languages concepts need to be known?
+        - What is data and how is it stored inside a computer? Binary
+        - What are basic datatypes in python and differences between them?
+            - Different types of operators?
+            - typecasting explicit and implicit
+        - What is a variable?
+        - How to control flow of the program? What are conditionals and loops?
+            - How does nested loops work?
+        - How to write a function and call them?
+        - How to write a class and instanciate from it?
+    - Python syntax?
+2. Basic programming with python
+    - How to implement function in python?
+        - What is *args and **kwargs and their differences?
+        - How to write a lambda function in python?
+    - What are build-in collections in python?
+        - List and tuples, dict, set functionality
+    - What are 2 main types of error handling?
+        - How does exception works in python?
+        - What are common types of exceptions?
+    - How to work with files in python?
+        - Why it's important to specify encoding?
+        - Reading and parsing json files? CSV files?
+3. Programming paradigms
+    - What is procedural programming? Functional programming? OOP programming?
+    - What is pure function? What is algorithm and its complexity?
+        - Recursion
+        - Map and filter function + comprehensions usage and their difference in performance
+    - What are 3 main concepts of OOP programming?
+        - How to implement any of them in python?
+        - What are abstract classes and how they are different from usual ones?
+        - What is class and instance objects, their variables and methods (static and object methods)?
+        - How does MRO works in OOP?
+4. Modules, packages, libraries
+    - What is differences between modules, packages and libraries?
+    - How to import them to python?
+    - Where does python try to find packages?
+    - reload() function to load changed packages dynamically in runtime
+    - What is testing and TDD? Testing libraries built-in and third-party?
+
+
+# For practice
+1. [Practice skills](https://www.hackerrank.com/domains/python)
+2. [Bunch of projects](https://www.geeksforgeeks.org/python-projects-beginner-to-advanced/)
