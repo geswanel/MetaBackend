@@ -559,24 +559,43 @@ Notes from the "Introduction to back-end development" course from Meta on the co
 - Bootstrap Themes?
 
 
-# Course syllabus
-1. First Week
-    - The difference between roles of back-end front-end and full-stack engineers
-    - How data is transferred in the internet? HTTP, IP, TCP protocols.
-        - Other network protocols (FTP, SFTP, UDP etc)
-    - Server-client architecture
-2. Second Week
-    - Difference between web page and web application
-    - What is dynamic and static content?
-    - HTML, CSS, JS as building blocks of a front.
-        - Structure of building, its design, its functionality
-        - What kind of html tags are exist?
-        - Layout, CSS properties, selectors
-3. Third Week
-    - Frameworks, Libraries difference?
-    - Bootstrap library
-        - Styles
-        - infixes, modifiers
-        - How grid layout is used in bootstrap?
-        - What is breakpoints, adaptive and responsive webdesign
-    - What is Rest Framework and how is it used? 
+# Course Syllabus SIR
+1. Introduction
+    - What is roles of Front-end Back-end and fullstack engineers and what are differences bewtween them?
+        - What are their stacks?
+    - How does the internet works?
+        - Protocols TCP, UDP, HTTP, IP, FTP, SFTP, SSH, etc. How does they work?
+    - What is webserver and webbrowser? What iis client-server architecture?
+    - What is website, webpage, webapplication and their differences?
+    - What is web hosting?
+    - How does html, css and js work together to build web pages?
+    - How does http protocol work in details? What are request and response and what is their structure?
+    - How to use developer tools to examine a web page?
+    - What is the difference between frameworks and libraries?
+    - What is an IDE?
+    - What is API?
+2. HTML CSS
+    - How does html works? What are common html tags? What is html attributes?
+        - What are forms used for?
+        - What is DOM?
+        - What is responsive design and accessibility?
+    - How does css helps to style a webpage? What are selectors, their types and features?
+        - What is css rule structure and what are common properties used in css?
+        - What does css box model consist of?
+        - How to control document flow?
+3. UI Frameworks and libraries
+    - What is Boost library?
+        - What are infixes and modifiers?
+        - How to create responsive webpages using breakpoints?
+        - Bootstrap grid system?
+        - Bootstrap components?
+    - What is react and how is it used?
+        - How react helps to modify web pages using virtual dom?
+    - What is spa? What is MVC?
+
+
+# Projects to practice
+1. Create simple profile/portfolio webpage with pure css, html
+2. Modify it using bootstrap and make it responsive
+3. Create basic react app for a stopwatch
+4. Deploy react app

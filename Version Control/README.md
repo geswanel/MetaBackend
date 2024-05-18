@@ -283,3 +283,28 @@ Course recap
 Staging, production
 2. Module 2: CLI commands, piping, redirection, std streams, flags, grep
 3. Module 3: Git technology, installation, connection via http and ssh, how git works, push, pull, commit, blame, branches, forking, lab, staging
+
+
+
+# Course Syllabus (SIR)
+1. Collaboration
+    - How to work on a codebase if there are a lot of developers?
+    - What is Version Control System? What are their types and differences between them?
+    - What is staging and production? How to implement it in real life?
+    - What is workflows?
+2. CLI
+    - What is CLI can be used for and why it's useful?
+    - What are common cli commands?
+    - What are pipes and redirection?
+    - How to use grep utility?
+        - Search for files recursively?
+        - Serach for word or phrase in all files recursively?
+3. Git and github
+    - What is git and how does git works? Commits, branches, repositeries
+    - What is github and how it's used with git?
+        - Forking, Cloning
+    - Git commands?
+
+# Practice project
+1. Try to create CI/CD for repo, staging, production
+2. [Learn git branching](https://learngitbranching.js.org/)

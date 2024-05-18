@@ -1,3 +1,7 @@
 [submodule "APIs/Assignment/final/LittleLemon"]
 	path = APIs/Assignment/final/LittleLemon
-	url = https://github.com/geswanel/LittleLemon.git
+  url = https://github.com/geswanel/LittleLemon.git
+
+[submodule "Capstone project/littlelemon/LittleLemon"]
+	path = Capstone project/littlelemon/LittleLemon
+  url = https://github.com/geswanel/LittleLemon.git
