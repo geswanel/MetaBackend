@@ -1,7 +1,3 @@
-
-
-
-
 ## 1 WEEK: REST APIs
 ### Course intro
 - Introduction to the course
@@ -430,7 +426,7 @@ class OrderView(generics.ListCreateAPIView):
     - `serializer.save()` `serializer.validated_data`
     - return `Response(serializer.data, http201)`
     - requirements of related fields
-        - `read_only=True` for realted field
+        - `read_only=True` for related field
     - category_id for posting id
         - `write_only=True`
     - it's possible to create multiple serializer for different call methods
@@ -843,7 +839,6 @@ class Order(models.Model):
     date = models.DateField(db_index=True)
 
 
-
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
@@ -884,6 +879,8 @@ class OrderItem(models.Model):
         - LittleLemon - LittleLemonAPI
         - notes.txt file for credentials of every user
     - reviewing
+
+- [Solution](https://www.coursera.org/learn/apis/supplement/s8PZD/peer-review-solution)
 
 # Course Syllabus
 1. REST API
